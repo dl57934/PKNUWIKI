@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const BackgroundView = ({ LeftView, RightView }) => {
+const BackgroundView = ({ CenterSection }) => {
   return (
-    <Container id="Box">
+    <Container id="mainBox">
       <LeftBox id="leftBox" />
-      <CenterBox>
-        <LeftView />
+      <CenterBox id="centerBox">
+        <CenterSection />
       </CenterBox>
       <RightBox id="rightBox">
-        <CurrentlyChange>
-          <RightView />
-        </CurrentlyChange>
+        <CurrentlyChange />
       </RightBox>
     </Container>
   );
@@ -22,14 +20,15 @@ export default BackgroundView;
 const Container = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 3fr 1fr;
-  height: 800px;
-  @media (max-width: 700px) {
-    #Box {
-      background-color: white;
-      display: flex;
-    }
+  height: 1000px;
+  @media all and (max-width: 700px) {
+    display: flex;
+
     #leftBox {
       width: 0;
+    }
+    #centerBox {
+      width: 100%;
       background-color: white;
     }
     #rightBox {
@@ -51,5 +50,4 @@ const CurrentlyChange = styled.div`
   height: 580px;
   margin-left: 20%;
   margin-top: 10%;
-  margin-right: 10px;
 `;

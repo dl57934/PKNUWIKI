@@ -23,7 +23,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-around;
   height: 80px;
-  @media (max-width: 700px) {
+  @media all and (max-width: 700px) {
     background-color: black;
     #search {
       font-size: 12px;
