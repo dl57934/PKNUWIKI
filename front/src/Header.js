@@ -26,8 +26,8 @@ const Container = styled.div`
   @media (max-width: 700px) {
     background-color: black;
     #search {
-      font-size: 8px;
-      margin-left: 0;
+      font-size: 12px;
+      margin-left: 30px;
       width: 200px;
     }
   }

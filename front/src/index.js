@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
+import BackgroundView from "./Components/BackgroundView";
 
 ReactDOM.render(
   <Fragment>
@@ -11,4 +12,9 @@ ReactDOM.render(
   </Fragment>,
   document.getElementById("header")
 );
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <Fragment>
+    <App />
+  </Fragment>,
+  document.getElementById("root")
+);
