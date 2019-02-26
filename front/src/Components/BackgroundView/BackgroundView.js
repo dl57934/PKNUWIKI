@@ -20,7 +20,7 @@ export default BackgroundView;
 const Container = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 3fr 1fr;
-  height: 1000px;
+
   @media all and (max-width: 1000px) {
     display: flex;
 
