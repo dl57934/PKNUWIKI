@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import HorizonTag from "../../../Components/HorizonTag";
+import WhaleImg from "../../../Components/WhaleImg";
 
 const CenterSection = () => {
   return (
     <Container>
       <Title>
-        <Name>부경위키:</Name>대문
+        <Name color="rgb(66, 66, 66)">부경위키:</Name>대문
       </Title>
+      <HorizonTag color="grey" />
+      <MiddleBox>
+        <WhaleImg width={"40%"} height={"60%"} isRadius="true" />
+        <Description>
+          부경대학교 학우들이 써내려가는 <br />
+          <Name color="skyblue">PKNU WIKI</Name>
+        </Description>
+      </MiddleBox>
       <HorizonTag color="grey" height="1px" />
-      <MiddleBox />
     </Container>
   );
 };
@@ -20,7 +28,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  justi
 `;
 
 const Title = styled.a.attrs({
@@ -37,10 +44,19 @@ const Title = styled.a.attrs({
 `;
 
 const Name = styled.span`
-  color: rgb(66, 66, 66);
+  color: ${props => props.color};
 `;
 
 const MiddleBox = styled.div`
   display: flex;
-  align
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 450px;
+`;
+
+const Description = styled.h2`
+  text-align: center;
+  font-size: 40px;
+  color: grey;
 `;

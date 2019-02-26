@@ -10,5 +10,5 @@ export default HorizonTag;
 const CustomHR = styled.hr`
   color: ${props => props.color};
   height: ${props => props.height};
-  width: 80%;
+  width: 90%;
 `;

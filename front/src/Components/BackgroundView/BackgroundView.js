@@ -21,7 +21,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 3fr 1fr;
   height: 1000px;
-  @media all and (max-width: 700px) {
+  @media all and (max-width: 1000px) {
     display: flex;
 
     #leftBox {
@@ -48,6 +48,6 @@ const CurrentlyChange = styled.div`
   background-color: white;
   width: 270px;
   height: 580px;
-  margin-left: 20%;
+  margin-left: 12%;
   margin-top: 10%;
 `;
