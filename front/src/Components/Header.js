@@ -1,15 +1,26 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
-import useInputTag from "./Components/InputTag";
+import useInputTag from "Components/InputTag";
+
+const SearchDocument = e => {
+  if (e.keyCode == 13) {
+  }
+};
 
 const Header = () => {
+  const search = useInputTag("");
   return (
     <Container>
       <HomeLink id="ToHome" href={"/부경위키:대문"} width={document.width}>
         <Whale id="whale" />
         <MainText id="MainText">PKNU WIKI</MainText>
       </HomeLink>
-      <SearchInput id="search" {...useInputTag} />
+      <SearchInput
+        id="search"
+        {...search}
+        type="text"
+        onKeyUp={SearchDocument}
+      />
       <LoginText id="login">로그인</LoginText>
     </Container>
   );
@@ -24,7 +35,6 @@ const Container = styled.div`
   justify-content: space-around;
   height: 80px;
   @media all and (max-width: 700px) {
-    background-color: black;
     #search {
       font-size: 12px;
       margin-left: 30px;
@@ -32,7 +42,6 @@ const Container = styled.div`
     }
   }
   @media (max-width: 470px) {
-    background-color: green;
     #search {
       font-size: 8px;
       margin-left: 0;
