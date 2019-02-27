@@ -1,13 +1,18 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import useInputTag from "Components/InputTag";
+import useInputTag from "Hooks/inputTag";
 
 const SearchDocument = e => {
+  const {
+    target: { value }
+  } = e;
   if (e.keyCode == 13) {
+    window.location = `/searchResult/${value}`;
   }
 };
 
-const Header = () => {
+const Header = props => {
   const search = useInputTag("");
   return (
     <Container>

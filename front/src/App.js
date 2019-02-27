@@ -11,7 +11,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact={true} path={"/부경위키:대문"} component={Home} />
-          <Route path={"/searchResult/:name"} component={Home} />
+          <Route path={"/searchResult/:name"} component={SearchResult} />
         </Switch>
       </BrowserRouter>
     </Fragment>

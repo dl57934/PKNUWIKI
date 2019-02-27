@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import styled, { css } from "styled-components";
-import HorizonTag from "../HorizonTag";
-import SkyBlueImg from "../SkyBlueImg";
+import HorizonTag from "./HorizonTag";
+import SkyBlueImg from "./SkyBlueImg";
 
 const TabBar = ({ img, text, count }) => {
   const [title, description] = text.split("/");
