@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import useInputTag from "Hooks/inputTag";
 

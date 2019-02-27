@@ -3,6 +3,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Header from "Components/Header";
 import Home from "Pages/Home";
 import SearchResult from "Pages/SearchResult";
+import Login from "Pages/Login";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Switch>
           <Route exact={true} path={"/부경위키:대문"} component={Home} />
           <Route path={"/searchResult/:name"} component={SearchResult} />
+          <Route path={"/login"} component={Login} />
         </Switch>
       </BrowserRouter>
     </Fragment>
