@@ -10,4 +10,5 @@ export default Title;
 const TitleDeco = styled.p`
   font-weight: bold;
   font-size: 30px;
+  margin-left: 5%;
 `;

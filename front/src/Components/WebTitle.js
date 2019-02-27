@@ -18,6 +18,9 @@ const Description = styled.h2`
   text-align: center;
   font-size: 40px;
   color: grey;
+  @media (max-width: 505px) {
+    font-size: 30px;
+  }
 `;
 
 export default WebTitle;

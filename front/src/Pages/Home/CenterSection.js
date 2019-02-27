@@ -3,6 +3,7 @@ import styled from "styled-components";
 import HorizonTag from "Components/HorizonTag";
 import SkyBlueImg from "Components/SkyBlueImg";
 import TabBar from "Components/TabBar";
+import WebTitle from "Components/WebTitle";
 
 const CenterSection = () => {
   const index = [
@@ -38,10 +39,7 @@ const CenterSection = () => {
             "https://user-images.githubusercontent.com/23521909/53392493-e63f3080-39dc-11e9-8cdb-4a7298701f0c.png"
           }
         />
-        <Description id="description">
-          부경대학교 학우들이 써내려가는 <br />
-          <Name color="skyblue">PKNU WIKI</Name>
-        </Description>
+        <WebTitle />
       </MiddleBox>
       <HorizonTag color="grey" height="1px" />
       <InfoBox>
