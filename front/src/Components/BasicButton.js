@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const BasicButton = ({ text, backgroundColor, color }) => {
+const BasicButton = ({ text, backgroundColor, color, url }) => {
   return (
-    <Button backgroundColor={backgroundColor} color={color}>
+    <Button
+      backgroundColor={backgroundColor}
+      color={color}
+      onClick={() => (window.location = url)}
+    >
       {text}
     </Button>
   );
@@ -16,6 +20,8 @@ const Button = styled.button`
   width: 80px;
   height: 50px;
   margin-right: 10px;
+  font-weight: 600;
+  font-size: 15px;
 `;
 
 export default BasicButton;

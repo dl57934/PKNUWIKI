@@ -28,6 +28,7 @@ const CenterSection = () => {
           text={"회원가입"}
           backgroundColor={"#87CEFA"}
           color={"white"}
+          url={"/signUp"}
         />
       </ButtonBox>
     </Container>

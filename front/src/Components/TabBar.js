@@ -17,7 +17,7 @@ const TabBar = ({ img, text, count }) => {
           <Description id="addition">{description}</Description>
         </RightSection>
       </TabBox>
-      {count != 2 ? (
+      {count !== 2 ? (
         <HorizonTag color="grey" marginBottom="1px" marginTop="1px" />
       ) : (
         ""
