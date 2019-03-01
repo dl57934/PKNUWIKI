@@ -75,7 +75,11 @@ const RightSection = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: white;
-  ${props => (props.index == 0 ? "border-top:2px solid skyblue" : "")};
-  ${props => (props.index == 2 ? "border-bottom:2px solid skyblue" : "")};
+  ${props =>
+    props.index === 0
+      ? "border-top:2px solid skyblue"
+      : props.index === 2
+      ? "border-bottom:2px solid skyblue"
+      : 0};
   border-right: 2px solid skyblue;
 `;
