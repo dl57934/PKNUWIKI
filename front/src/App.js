@@ -5,6 +5,7 @@ import Home from "Pages/Home";
 import SearchResult from "Pages/SearchResult";
 import Login from "Pages/Login";
 import SingUp from "Pages/SignUp";
+import Viewer from "Pages/Viewer";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path={"/searchResult/:name"} component={SearchResult} />
           <Route path={"/login"} component={Login} />
           <Route path={"/signUp"} component={SingUp} />
+          <Route path={"/contents/:id"} component={Viewer} />
         </Switch>
       </BrowserRouter>
     </Fragment>

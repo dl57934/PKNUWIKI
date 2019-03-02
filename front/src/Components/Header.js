@@ -38,19 +38,23 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-around;
   height: 80px;
-  @media all and (max-width: 700px) {
+  @media all and (max-width: 1000px) {
     #search {
-      font-size: 12px;
+      font-size: 15px;
       margin-left: 30px;
-      width: 200px;
+      ::placeholder {
+        font-size: 15px;
+      }
     }
   }
   @media (max-width: 470px) {
     #search {
-      font-size: 8px;
-      margin-left: 0;
-      width: 150px;
+      font-size: 11px;
       margin-left: 10px;
+      padding: 3px;
+      ::placeholder {
+        font-size: 11px;
+      }
     }
     #MainText {
       font-size: 15px;
@@ -91,13 +95,15 @@ const MainText = styled.p`
 const SearchInput = styled.input.attrs({
   placeholder: "부경대학교에 대해 검색해주세요!"
 })`
-  width: 30%;
-  height: 25%;
-  font-size: 15px;
+  width: 38%;
+  height: 20px;
+  font-size: 16px;
   border-radius: 6px;
   font-weight: 600;
+  padding: 5px;
   ::placeholder {
     text-align: center;
+    font-size: 16px;
   }
   margin-left: -10%;
 `;
