@@ -5,7 +5,6 @@ import SkyBlueImg from "./SkyBlueImg";
 
 const TabBar = ({ img, text, count }) => {
   const [title, description] = text.split("/");
-  const [value, setValue] = useState(text);
   return (
     <Fragment>
       <TabBox>
