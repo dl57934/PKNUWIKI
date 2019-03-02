@@ -5,6 +5,7 @@ import Title from "Components/Title";
 import WebTitle from "Components/WebTitle";
 import BasicButton from "Components/BasicButton";
 import PasswordSameCheckCircle from "Components/PasswordSameCheckCircle";
+import { Link } from "react-router-dom";
 
 const CenterSection = () => {
   const id = useInputTag("");
@@ -15,13 +16,8 @@ const CenterSection = () => {
   const [isSamePassword, setPassword] = useState(false);
 
   useEffect(() => {
-    if (password.value === passwordCheck.value) {
-      console.log("true");
-      setPassword(true);
-    } else {
-      console.log("false");
-      setPassword(false);
-    }
+    if (password.value === passwordCheck.value) setPassword(true);
+    else setPassword(false);
   }, [password.value, passwordCheck.value]);
 
   return (
@@ -57,12 +53,10 @@ const CenterSection = () => {
         />
       </InputBox>
       <ButtonBox>
-        <BasicButton text={"로그인"} />
         <BasicButton
           text={"회원가입"}
           backgroundColor={"#87CEFA"}
           color={"white"}
-          url={"/signUp"}
         />
       </ButtonBox>
     </Container>

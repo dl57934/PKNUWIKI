@@ -4,6 +4,7 @@ import useInputTag from "Hooks/inputTag";
 import Title from "Components/Title";
 import WebTitle from "Components/WebTitle";
 import BasicButton from "Components/BasicButton";
+import { Link } from "react-router-dom";
 
 const CenterSection = () => {
   const id = useInputTag("");
@@ -24,12 +25,14 @@ const CenterSection = () => {
       </InputBox>
       <ButtonBox>
         <BasicButton text={"로그인"} />
-        <BasicButton
-          text={"회원가입"}
-          backgroundColor={"#87CEFA"}
-          color={"white"}
-          url={"/signUp"}
-        />
+        <Link to={"/signUp"}>
+          <BasicButton
+            text={"회원가입"}
+            backgroundColor={"#87CEFA"}
+            color={"white"}
+            url={"/signUp"}
+          />
+        </Link>
       </ButtonBox>
     </Container>
   );

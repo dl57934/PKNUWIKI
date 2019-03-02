@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Header from "Components/Header";
 import Home from "Pages/Home";
@@ -6,6 +6,7 @@ import SearchResult from "Pages/SearchResult";
 import Login from "Pages/Login";
 import SingUp from "Pages/SignUp";
 import Viewer from "Pages/Viewer";
+import EditOrWrite from "Pages/EditOrWrite";
 
 const App = () => {
   return (
@@ -18,6 +19,8 @@ const App = () => {
           <Route path={"/login"} component={Login} />
           <Route path={"/signUp"} component={SingUp} />
           <Route path={"/contents/:id"} component={Viewer} />
+          <Route path={"/edit/:id"} component={EditOrWrite} />
+          <Route path={"/write"} component={EditOrWrite} />
         </Switch>
       </BrowserRouter>
     </Fragment>

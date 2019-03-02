@@ -49,7 +49,7 @@ const Container = styled.div`
   }
   @media (max-width: 470px) {
     #search {
-      font-size: 11px;
+      font-size: 11pgx;
       margin-left: 10px;
       padding: 3px;
       ::placeholder {
