@@ -2,9 +2,24 @@ import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
 import Title from "Components/Title";
 import BasicButton from "Components/BasicButton";
+import MarkDownRender from "react-markdown-renderer";
+
+const useTextContents = () => {
+  const [value, setValue] = useState("");
+
+  const onChange = e => {
+    const {
+      target: { value }
+    } = e;
+    setValue(value);
+  };
+
+  return { value, onChange };
+};
 
 const CenterSection = ({ isEdit, title }) => {
   const [writeStatus, setStatus] = useState(true);
+  const textarea = useTextContents();
   title = "PKNU WIKI";
   return (
     <Fragment>
@@ -32,7 +47,13 @@ const CenterSection = ({ isEdit, title }) => {
         >
           미리보기
         </EditAndPreviewButton>
-        <WritingZone />
+        {writeStatus ? (
+          <WritingZone {...textarea} />
+        ) : (
+          <PreviewZone>
+            <MarkDownRender markdown={textarea.value} />
+          </PreviewZone>
+        )}
       </CenterBox>
     </Fragment>
   );
