@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React from "react";
 import styled from "styled-components";
 import useInputTag from "Hooks/inputTag";
 
@@ -6,7 +6,7 @@ const SearchDocument = e => {
   const {
     target: { value }
   } = e;
-  if (e.keyCode == 13) {
+  if (e.keyCode === 13) {
     window.location = `/searchResult/${value}`;
   }
 };

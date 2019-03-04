@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import HorizonTag from "Components/HorizonTag";
 import SkyBlueImg from "Components/SkyBlueImg";
@@ -65,6 +65,7 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   @media all and (max-width: 500px) {
+    transition-duration: 0.5s;
     #description {
       font-size: 20px;
     }
@@ -94,10 +95,4 @@ const MiddleBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 450px;
-`;
-
-const Description = styled.h2`
-  text-align: center;
-  font-size: 40px;
-  color: grey;
 `;

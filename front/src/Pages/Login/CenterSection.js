@@ -58,6 +58,7 @@ const InputBox = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 505px) {
+    transition-duration: 0.5s;
     font-size: 15px;
   }
 `;

@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import MarkDownRender from "react-markdown-renderer";
 import styled from "styled-components";
 import BasicButton from "Components/BasicButton";
-import { Link } from "react-router-dom";
 import HorizonTag from "Components/HorizonTag";
 
 const CenterSection = ({ markdown }) => {

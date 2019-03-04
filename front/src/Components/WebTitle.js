@@ -19,6 +19,7 @@ const Description = styled.h2`
   font-size: 40px;
   color: grey;
   @media (max-width: 505px) {
+    transition-duration: 0.5s;
     font-size: 30px;
   }
 `;

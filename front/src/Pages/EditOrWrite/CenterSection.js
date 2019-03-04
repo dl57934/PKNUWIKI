@@ -1,8 +1,9 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import styled from "styled-components";
 import Title from "Components/Title";
 import BasicButton from "Components/BasicButton";
 import MarkDownRender from "react-markdown-renderer";
+import options from "Components/MarkdownOptions";
 
 const useTextContents = () => {
   const [value, setValue] = useState("");
@@ -51,7 +52,7 @@ const CenterSection = ({ isEdit, title }) => {
           <WritingZone {...textarea} />
         ) : (
           <PreviewZone>
-            <MarkDownRender markdown={textarea.value} />
+            <MarkDownRender markdown={textarea.value} options={options} />
           </PreviewZone>
         )}
       </CenterBox>
@@ -80,9 +81,15 @@ const WritingZone = styled.textarea`
   width: 97%;
   height: 500px;
   border: 1px solid rgb(221, 221, 221);
+  overflow: auto;
 `;
 
-const PreviewZone = styled.div``;
+const PreviewZone = styled.div`
+  border: 1px solid rgb(221, 221, 221);
+  width: 97%;
+  height: 500px;
+  overflow: auto;
+`;
 
 const EditAndPreviewButton = styled.button`
   width: 70px;

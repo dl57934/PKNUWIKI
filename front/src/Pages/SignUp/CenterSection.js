@@ -5,7 +5,6 @@ import Title from "Components/Title";
 import WebTitle from "Components/WebTitle";
 import BasicButton from "Components/BasicButton";
 import PasswordSameCheckCircle from "Components/PasswordSameCheckCircle";
-import { Link } from "react-router-dom";
 
 const CenterSection = () => {
   const id = useInputTag("");
@@ -83,6 +82,7 @@ const InputBox = styled.div`
   justify-content: center;
   align-items: center;
   @media (max-width: 505px) {
+    transition-duration: 0.5s;
     font-size: 15px;
   }
 `;

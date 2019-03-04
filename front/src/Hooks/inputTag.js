@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const useInputTag = defaultValue => {
   const [value, setValue] = useState(defaultValue);

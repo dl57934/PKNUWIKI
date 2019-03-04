@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React from "react";
 import BackgroundView from "Components/BackgroundView";
 import CenterSection from "./CenterSection";
 

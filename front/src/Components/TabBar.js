@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import styled, { css } from "styled-components";
 import HorizonTag from "./HorizonTag";
 import SkyBlueImg from "./SkyBlueImg";
@@ -51,6 +51,7 @@ const TabBox = styled.div`
   height: 80px;
   width: 90%;
   @media all and (max-width: 500px) {
+    transition-duration: 0.5s;
     #title {
       margin-top: 10px;
       font-weight: bold;

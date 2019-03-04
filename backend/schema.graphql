@@ -1,0 +1,9 @@
+type Query {
+  firstSchema: String!
+  searchResult(contentsName: String!): Content!
+}
+
+type Content {
+  title: String
+  contents: String
+}

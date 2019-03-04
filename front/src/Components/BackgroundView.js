@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const BackgroundView = ({ CenterSection, markdown, isEdit }) => {
+const BackgroundView = ({ CenterSection, markdown, isEdit, searchName }) => {
   return (
     <Container id="mainBox">
       <LeftBox id="leftBox" />
       <CenterBox id="centerBox">
-        <CenterSection markdown={markdown} isEdit={isEdit} />
+        <CenterSection
+          markdown={markdown}
+          isEdit={isEdit}
+          contentsName={searchName}
+        />
       </CenterBox>
       <RightBox id="rightBox">
         <CurrentlyChange />
@@ -23,7 +27,7 @@ const Container = styled.div`
   height: 1500px;
   @media all and (max-width: 1000px) {
     display: flex;
-
+    transition-duration: 1s;
     #leftBox {
       width: 0;
     }

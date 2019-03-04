@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React from "react";
 import BackgroundView from "Components/BackgroundView";
 import CenterSection from "./CenterSection";
 
@@ -8,8 +7,7 @@ const SearchResult = ({
     params: { name }
   }
 }) => {
-  console.log(name);
-  return <BackgroundView CenterSection={CenterSection} />;
+  return <BackgroundView CenterSection={CenterSection} contentsName={name} />;
 };
 
 export default SearchResult;
