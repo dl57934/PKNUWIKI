@@ -10,7 +10,7 @@ const SearchResult = ({
     params: { name }
   }
 }) => {
-  const { data, loading, error } = useQuery(SEARCH_RESULT, {
+  const { data, loading } = useQuery(SEARCH_RESULT, {
     variables: {
       contentsName: name
     }
