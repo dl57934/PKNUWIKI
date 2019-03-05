@@ -23,8 +23,8 @@ const App = () => {
               <Route path={"/searchResult/:name"} component={SearchResult} />
               <Route path={"/login"} component={Login} />
               <Route path={"/signUp"} component={SingUp} />
-              <Route path={"/contents/:id"} component={Viewer} />
-              <Route path={"/edit/:id"} component={EditOrWrite} />
+              <Route path={"/contents/:contentName"} component={Viewer} />
+              <Route path={"/edit/:contentName"} component={EditOrWrite} />
               <Route path={"/write"} component={EditOrWrite} />
             </Switch>
           </BrowserRouter>

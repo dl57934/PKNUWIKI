@@ -50,6 +50,9 @@ const ButtonBox = styled.div`
   justify-content: right;
   margin-left: 70%;
   margin-top: 80px;
+  @media (max-width: 520px) {
+    margin-left: 50%;
+  }
 `;
 
 const InputBox = styled.div`

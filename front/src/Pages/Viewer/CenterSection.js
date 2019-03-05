@@ -4,8 +4,9 @@ import styled from "styled-components";
 import BasicButton from "Components/BasicButton";
 import HorizonTag from "Components/HorizonTag";
 
-const CenterSection = ({ markdown }) => {
-  console.log(markdown);
+const CenterSection = ({ data }) => {
+  console.log(data);
+  const markdown = "# hihi";
   return (
     <Fragment>
       <EditButton>

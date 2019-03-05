@@ -3,6 +3,8 @@ import styled, { css } from "styled-components";
 import HorizonTag from "./HorizonTag";
 import SkyBlueImg from "./SkyBlueImg";
 
+const LAST_TAB_BAR = 2;
+
 const TabBar = ({ img, text, count }) => {
   const [title, description] = text.split("/");
   return (
@@ -16,7 +18,7 @@ const TabBar = ({ img, text, count }) => {
           <Description id="addition">{description}</Description>
         </RightSection>
       </TabBox>
-      {count !== 2 ? (
+      {count !== LAST_TAB_BAR ? (
         <HorizonTag color="grey" marginBottom="1px" marginTop="1px" />
       ) : (
         ""

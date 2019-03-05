@@ -4,7 +4,7 @@ const SEARCH_RESULT = gql`
   query SEARCH_RESULT($contentsName: String!) {
     searchResult(contentsName: $contentsName) {
       title
-      contents
+      explanation
     }
   }
 `;
