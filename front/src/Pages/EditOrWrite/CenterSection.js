@@ -18,14 +18,13 @@ const useTextContents = () => {
   return { value, onChange };
 };
 
-const CenterSection = ({ isEdit, title }) => {
+const CenterSection = ({ contentsName }) => {
   const [writeStatus, setStatus] = useState(true);
   const textarea = useTextContents();
-  title = "PKNU WIKI";
   return (
     <Fragment>
       <UpBox>
-        <Title text={"PKNU WIKI"} />
+        <Title text={contentsName} />
         <ButtonBox>
           <BasicButton text={"역사"} />
           <BasicButton

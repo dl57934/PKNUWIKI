@@ -1,9 +1,19 @@
 type Query {
   firstSchema: String!
-  searchResult(contentsName: String!): Content!
+  searchResult(contentsName: String!): SearchContent!
+  getContent(contentName: String!): Content!
+}
+
+type Mutation {
+  saveContent(contentName: String!, markdown: String!): Boolean!
+}
+
+type SearchContent {
+  title: [String]
+  explanation: [String]
 }
 
 type Content {
-  title: String
-  contents: String
+  title: String!
+  markdown: String!
 }

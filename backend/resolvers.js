@@ -1,16 +1,32 @@
 const resolvers = {
   Query: {
     firstSchema: () => "First Schema",
-    searchResult: (_, { contentsName }) => searchResult({ contentsName })
+    searchResult: (_, { contentsName }) => searchResult({ contentsName }),
+    getContent: (_, { contentName }) => getContent({ contentName })
+  },
+  Mutation: {
+    saveContent: (_, { contentName, markdown }) =>
+      saveContent({ contentName, markdown })
   }
 };
 
 export default resolvers;
 
 const searchResult = ({ contentsName }) => {
-  console.log(contentsName);
   return {
-    title: "hihi",
-    contents: "zz"
+    title: [contentsName],
+    explanation: ["zz"]
   };
+};
+
+const getContent = ({ contentName }) => {
+  return {
+    title: contentName,
+    markdown: "#### hihi"
+  };
+};
+
+const saveContent = ({ contentName, markdown }) => {
+  console.log(contentName, markdown);
+  return true;
 };

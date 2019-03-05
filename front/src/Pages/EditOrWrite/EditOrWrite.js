@@ -3,8 +3,16 @@ import BackgroundView from "Components/BackgroundView";
 import CenterSection from "./CenterSection";
 
 const EditOrWrite = ({ match }) => {
+  const {
+    params: { contentName }
+  } = match;
+
   return (
-    <BackgroundView CenterSection={CenterSection} isEdit={isEdit({ match })} />
+    <BackgroundView
+      CenterSection={CenterSection}
+      isEdit={isEdit({ match })}
+      searchName={contentName}
+    />
   );
 };
 

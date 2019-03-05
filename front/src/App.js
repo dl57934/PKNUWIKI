@@ -25,7 +25,7 @@ const App = () => {
               <Route path={"/signUp"} component={SingUp} />
               <Route path={"/contents/:contentName"} component={Viewer} />
               <Route path={"/edit/:contentName"} component={EditOrWrite} />
-              <Route path={"/write"} component={EditOrWrite} />
+              <Route path={"/write/:contentName"} component={EditOrWrite} />
             </Switch>
           </BrowserRouter>
         </ApolloHooksProvider>

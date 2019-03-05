@@ -3,18 +3,27 @@ import MarkDownRender from "react-markdown-renderer";
 import styled from "styled-components";
 import BasicButton from "Components/BasicButton";
 import HorizonTag from "Components/HorizonTag";
+import options from "Components/MarkdownOptions";
+import { Link } from "react-router-dom";
 
-const CenterSection = ({ data }) => {
-  console.log(data);
-  const markdown = "# hihi";
+const CenterSection = ({
+  data: {
+    getContent: { title, markdown }
+  }
+}) => {
   return (
     <Fragment>
       <EditButton>
-        <BasicButton text={"수정하기"} color={"skyblue"} />
+        <Link to={`/edit/${title}`}>
+          <BasicButton text={"수정하기"} color={"skyblue"} />
+        </Link>
       </EditButton>
-      <Content>
-        <MarkDownRender markdown={markdown} />
-      </Content>
+      <ContentBox>
+        <ContentName> {title}</ContentName>
+        <Content>
+          <MarkDownRender markdown={markdown} options={options} />
+        </Content>
+      </ContentBox>
       <EditList>
         <EditTitle>수정 내역</EditTitle>
         <HorizonTag />
@@ -25,7 +34,17 @@ const CenterSection = ({ data }) => {
 
 export default CenterSection;
 
+const ContentName = styled.p`
+  margin-left: 5%;
+  font-weight: bold;
+  font-size: 40px;
+`;
+
 const Content = styled.div`
+  margin-left: 5%;
+`;
+
+const ContentBox = styled.div`
   margin-left: 30px;
   margin-top: 40px;
 `;
