@@ -16,4 +16,5 @@ type SearchContent {
 type Content {
   title: String!
   markdown: String!
+  hashTag: [String]!
 }

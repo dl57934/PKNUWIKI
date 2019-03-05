@@ -4,6 +4,7 @@ import Title from "Components/Title";
 import BasicButton from "Components/BasicButton";
 import MarkDownRender from "react-markdown-renderer";
 import options from "Components/MarkdownOptions";
+import useInputTag from "Hooks/inputTag";
 
 const useTextContents = () => {
   const [value, setValue] = useState("");
@@ -18,15 +19,26 @@ const useTextContents = () => {
   return { value, onChange };
 };
 
-const CenterSection = ({ contentsName }) => {
+const CenterSection = ({ contentName, isEdit, data }) => {
   const [writeStatus, setStatus] = useState(true);
   const textarea = useTextContents();
+  const hashTagState = useInputTag("");
+
+  if (isEdit) {
+    const {
+      getContent: { hashTag, markdown }
+    } = data;
+    textarea.value = markdown;
+    hashTagState.value = hashTag.join(" ");
+  }
+
   return (
     <Fragment>
       <UpBox>
-        <Title text={contentsName} />
+        <Title text={contentName} />
         <ButtonBox>
-          <BasicButton text={"역사"} />
+          {isEdit ? <BasicButton text={"역사"} /> : ""}
+
           <BasicButton
             text={"저장"}
             color={"white"}
@@ -55,6 +67,10 @@ const CenterSection = ({ contentsName }) => {
           </PreviewZone>
         )}
       </CenterBox>
+      <Title text={"해쉬 태그 설정"} />
+      <BottomBox>
+        <HashTagInput {...hashTagState} />
+      </BottomBox>
     </Fragment>
   );
 };
@@ -102,4 +118,20 @@ const EditAndPreviewButton = styled.button`
   background-color: white;
   color: ${props => (props.writeStatus ? "rgb(50, 120, 210)" : "grey")};
   border-radius: 5%;
+`;
+
+const BottomBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const HashTagInput = styled.input`
+  width: 80%;
+  height: 25px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(109, 109, 109);
 `;

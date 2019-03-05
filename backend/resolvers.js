@@ -22,7 +22,8 @@ const searchResult = ({ contentsName }) => {
 const getContent = ({ contentName }) => {
   return {
     title: contentName,
-    markdown: "#### hihi"
+    markdown: "#### hihi",
+    hashTag: ["#hihi", "#안녕하세요."]
   };
 };
 

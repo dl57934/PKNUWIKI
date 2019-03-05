@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const BackgroundView = ({ CenterSection, isEdit, searchName, data }) => {
+const BackgroundView = ({ CenterSection, isEdit, contentName, data }) => {
   return (
     <Container id="mainBox">
       <LeftBox id="leftBox" />
       <CenterBox id="centerBox">
-        <CenterSection isEdit={isEdit} contentsName={searchName} data={data} />
+        <CenterSection isEdit={isEdit} contentName={contentName} data={data} />
       </CenterBox>
       <RightBox id="rightBox">
         <CurrentlyChange />

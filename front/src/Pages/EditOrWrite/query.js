@@ -11,7 +11,15 @@ export const EDIT_PAGE = gql`
 `;
 
 export const EDIT_WRITE_PAGE = gql`
-  mutation saveContent($contentName: String!, $markdown: String!) {
-    saveContent(contentName: $contentName, markdown: $markdown)
+  mutation saveContent(
+    $contentName: String!
+    $markdown: String!
+    $hashTag: [String!]
+  ) {
+    saveContent(
+      contentName: $contentName
+      markdown: $markdown
+      hashTag: $hashTag
+    )
   }
 `;
