@@ -5,6 +5,9 @@ import BasicButton from "Components/BasicButton";
 import MarkDownRender from "react-markdown-renderer";
 import options from "Components/MarkdownOptions";
 import useInputTag from "Hooks/inputTag";
+import { useMutation } from "react-apollo-hooks";
+import { BasicButtonCss } from "Components/CssCollection";
+import { EDIT_WRITE_PAGE } from "./query";
 
 const useTextContents = () => {
   const [value, setValue] = useState("");
@@ -32,6 +35,17 @@ const CenterSection = ({ contentName, isEdit, data }) => {
     hashTagState.value = hashTag.join(" ");
   }
 
+  const saveContent = useMutation(EDIT_WRITE_PAGE, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult);
+    },
+    variables: {
+      contentName,
+      markdown: textarea.value,
+      hashTag: hashTagState.value.split(" ")
+    }
+  });
+
   return (
     <Fragment>
       <UpBox>
@@ -39,11 +53,7 @@ const CenterSection = ({ contentName, isEdit, data }) => {
         <ButtonBox>
           {isEdit ? <BasicButton text={"역사"} /> : ""}
 
-          <BasicButton
-            text={"저장"}
-            color={"white"}
-            backgroundColor={"rgb(206, 61, 62)"}
-          />
+          <SaveButton onClick={saveContent}>저장</SaveButton>
         </ButtonBox>
       </UpBox>
       <CenterBox>
@@ -134,4 +144,10 @@ const HashTagInput = styled.input`
   font-size: 15px;
   font-weight: 600;
   color: rgb(109, 109, 109);
+`;
+
+const SaveButton = styled.button`
+  background-color: rgb(206, 61, 62);
+  color: white;
+  ${BasicButtonCss}
 `;

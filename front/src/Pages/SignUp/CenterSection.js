@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useInputTag from "Hooks/inputTag";
 import Title from "Components/Title";
 import WebTitle from "Components/WebTitle";
-import BasicButton from "Components/BasicButton";
+import { BasicButtonCss } from "Components/CssCollection";
 import PasswordSameCheckCircle from "Components/PasswordSameCheckCircle";
 
 const CenterSection = () => {
@@ -52,11 +52,7 @@ const CenterSection = () => {
         />
       </InputBox>
       <ButtonBox>
-        <BasicButton
-          text={"회원가입"}
-          backgroundColor={"#87CEFA"}
-          color={"white"}
-        />
+        <SignUpButton>회원가입</SignUpButton>
       </ButtonBox>
     </Container>
   );
@@ -108,4 +104,10 @@ const Preface = styled.div`
   margin-bottom: 2%;
   font-weight: 600;
   font-size: 20px;
+`;
+
+const SignUpButton = styled.button`
+  ${BasicButtonCss}
+  background-color:#87CEFA;
+  color: white;
 `;

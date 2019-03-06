@@ -11,13 +11,16 @@ import LOGIN_PAGE from "./query";
 const CenterSection = () => {
   const id = useInputTag("");
   const password = useInputTag("");
-  console.log(id.value);
   const sendLogin = useMutation(LOGIN_PAGE, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult);
+    },
     variables: {
       id: id.value,
       password: password.value
     }
   });
+
   return (
     <Container>
       <Title text={`로그인`} />
@@ -33,9 +36,7 @@ const CenterSection = () => {
         />
       </InputBox>
       <ButtonBox>
-        <button text={"로그인"} onClick={sendLogin}>
-          로그인
-        </button>
+        <LoginButton onClick={sendLogin}>로그인</LoginButton>
         <Link to={"/signUp"}>
           <BasicButton
             text={"회원가입"}
@@ -82,6 +83,15 @@ const LoginInput = styled.input`
   padding: 10px;
   font-size: 15px;
   border-radius: 5px;
+`;
+
+const LoginButton = styled.button`
+  border: 1px solid grey;
+  font-weight: 600;
+  font-size: 15px;
+  width: 80px;
+  height: 50px;
+  margin-right: 10px;
 `;
 
 const Preface = styled.h3`

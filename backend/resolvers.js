@@ -31,7 +31,7 @@ const getContent = ({ contentName }) => {
   };
 };
 
-const saveContent = ({ contentName, markdown }) => {
-  console.log(contentName, markdown);
+const saveContent = ({ contentName, markdown, hashTag }) => {
+  console.log(contentName, markdown, hashTag);
   return true;
 };
