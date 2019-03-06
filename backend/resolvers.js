@@ -11,8 +11,8 @@ const resolvers = {
       console.log(id, password);
       return true;
     },
-    signUp: (_, { id, password, name, email }) => {
-      console.log(id, password, name, email);
+    signUp: (_, { id, password, name }) => {
+      console.log(id, password, name);
       return true;
     }
   }

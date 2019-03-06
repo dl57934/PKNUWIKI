@@ -13,7 +13,6 @@ const CenterSection = () => {
   const password = useInputTag("");
   const name = useInputTag("");
   const passwordCheck = useInputTag("");
-  const email = useInputTag("");
   const [isSamePassword, setPassword] = useState(false);
 
   useEffect(() => {
@@ -27,10 +26,17 @@ const CenterSection = () => {
     variables: {
       name: name.value,
       password: password.value,
-      id: id.value,
-      email: email.value
+      id: id.value
     }
   });
+
+  const isCorrectSignUp = () => {
+    if (isSamePassword) {
+      console.log(isSamePassword);
+      return true;
+    } else return false;
+  };
+
   return (
     <Container>
       <Title text={`회원가입`} />
@@ -39,7 +45,7 @@ const CenterSection = () => {
         <Preface>이름</Preface>
         <LoginInput placeholder="이름을 입력해주세요." type="text" {...name} />
         <Preface>아이디</Preface>
-        <LoginInput placeholder="id를 입력해주세요." type="id" {...id} />
+        <LoginInput placeholder="id를 입력해주세요." type="email" {...id} />
         <Preface>비밀번호</Preface>
         <LoginInput
           type="password"
@@ -56,15 +62,15 @@ const CenterSection = () => {
           />
           <PasswordSameCheckCircle isSame={isSamePassword} />
         </PasswordCheckBox>
-        <Preface>이메일</Preface>
-        <LoginInput
-          type="email"
-          placeholder="email을 입력해주세요."
-          {...email}
-        />
       </InputBox>
       <ButtonBox>
-        <SignUpButton onClick={signUp}>회원가입</SignUpButton>
+        <SignUpButton
+          onClick={() =>
+            isCorrectSignUp() ? signUp() : alert("입력된 값들을 확인해주세요!!")
+          }
+        >
+          회원가입
+        </SignUpButton>
       </ButtonBox>
     </Container>
   );
@@ -106,6 +112,7 @@ const LoginInput = styled.input`
   font-size: 15px;
   border-radius: 5px;
   margin-left: ${props => (props.passwordCheck ? "30px" : 0)};
+  ime-mode: disabled;
 `;
 
 const Preface = styled.div`
