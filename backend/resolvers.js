@@ -5,8 +5,12 @@ const resolvers = {
     getContent: (_, { contentName }) => getContent({ contentName })
   },
   Mutation: {
-    saveContent: (_, { contentName, markdown }) =>
-      saveContent({ contentName, markdown })
+    saveContent: (_, { contentName, markdown, hashTag }) =>
+      saveContent({ contentName, markdown, hashTag }),
+    login: (_, { id, password }) => {
+      console.log(id, password);
+      return true;
+    }
   }
 };
 

@@ -5,10 +5,19 @@ import Title from "Components/Title";
 import WebTitle from "Components/WebTitle";
 import BasicButton from "Components/BasicButton";
 import { Link } from "react-router-dom";
+import { useMutation } from "react-apollo-hooks";
+import LOGIN_PAGE from "./query";
 
 const CenterSection = () => {
   const id = useInputTag("");
   const password = useInputTag("");
+  console.log(id.value);
+  const sendLogin = useMutation(LOGIN_PAGE, {
+    variables: {
+      id: id.value,
+      password: password.value
+    }
+  });
   return (
     <Container>
       <Title text={`로그인`} />
@@ -24,7 +33,9 @@ const CenterSection = () => {
         />
       </InputBox>
       <ButtonBox>
-        <BasicButton text={"로그인"} />
+        <button text={"로그인"} onClick={sendLogin}>
+          로그인
+        </button>
         <Link to={"/signUp"}>
           <BasicButton
             text={"회원가입"}

@@ -5,7 +5,12 @@ type Query {
 }
 
 type Mutation {
-  saveContent(contentName: String!, markdown: String!): Boolean!
+  saveContent(
+    contentName: String!
+    markdown: String!
+    hashTag: [String]
+  ): Boolean!
+  login(id: String!, password: String!): Boolean!
 }
 
 type SearchContent {

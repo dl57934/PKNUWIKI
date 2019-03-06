@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const BasicButton = ({ text, backgroundColor, color }) => {
+const BasicButton = ({ text, backgroundColor, color, onClick }) => {
   return (
-    <Button backgroundColor={backgroundColor} color={color}>
+    <Button
+      backgroundColor={backgroundColor}
+      color={color}
+      onClick={() => onClick}
+    >
       {text}
     </Button>
   );
