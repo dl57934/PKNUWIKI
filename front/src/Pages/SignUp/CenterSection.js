@@ -26,15 +26,15 @@ const CenterSection = () => {
       <InputBox>
         <Preface>이름</Preface>
         <LoginInput placeholder="이름을 입력해주세요." type="text" {...name} />
-        <Preface>UserName</Preface>
+        <Preface>아이디</Preface>
         <LoginInput placeholder="id를 입력해주세요." type="id" {...id} />
-        <Preface>Password</Preface>
+        <Preface>비밀번호</Preface>
         <LoginInput
           type="password"
           placeholder="비밀번호를 입력해주세요."
           {...password}
         />
-        <Preface>Password Check</Preface>
+        <Preface>비밀번호 확인</Preface>
         <PasswordCheckBox>
           <LoginInput
             placeholder="동일한 비밀번호를 입력해주세요!"
@@ -44,7 +44,7 @@ const CenterSection = () => {
           />
           <PasswordSameCheckCircle isSame={isSamePassword} />
         </PasswordCheckBox>
-        <Preface>Email</Preface>
+        <Preface>이메일</Preface>
         <LoginInput
           type="email"
           placeholder="email을 입력해주세요."

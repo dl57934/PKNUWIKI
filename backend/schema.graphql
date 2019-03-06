@@ -11,6 +11,7 @@ type Mutation {
     hashTag: [String]
   ): Boolean!
   login(id: String!, password: String!): Boolean!
+  signUp(name: String!, id: String!, password: String!, email: String): Boolean!
 }
 
 type SearchContent {
