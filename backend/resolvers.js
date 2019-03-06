@@ -10,6 +10,10 @@ const resolvers = {
     login: (_, { id, password }) => {
       console.log(id, password);
       return true;
+    },
+    signUp: (_, { id, password, name, email }) => {
+      console.log(id, password, name, email);
+      return true;
     }
   }
 };

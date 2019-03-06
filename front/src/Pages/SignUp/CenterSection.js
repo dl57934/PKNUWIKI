@@ -5,6 +5,8 @@ import Title from "Components/Title";
 import WebTitle from "Components/WebTitle";
 import { BasicButtonCss } from "Components/CssCollection";
 import PasswordSameCheckCircle from "Components/PasswordSameCheckCircle";
+import { useMutation } from "react-apollo-hooks";
+import SIGN_UP_PAGE from "./query";
 
 const CenterSection = () => {
   const id = useInputTag("");
@@ -18,7 +20,17 @@ const CenterSection = () => {
     if (password.value === passwordCheck.value) setPassword(true);
     else setPassword(false);
   }, [password.value, passwordCheck.value]);
-
+  const signUp = useMutation(SIGN_UP_PAGE, {
+    update: (proxy, mutationResult) => {
+      console.log(mutationResult);
+    },
+    variables: {
+      name: name.value,
+      password: password.value,
+      id: id.value,
+      email: email.value
+    }
+  });
   return (
     <Container>
       <Title text={`회원가입`} />
@@ -52,7 +64,7 @@ const CenterSection = () => {
         />
       </InputBox>
       <ButtonBox>
-        <SignUpButton>회원가입</SignUpButton>
+        <SignUpButton onClick={signUp}>회원가입</SignUpButton>
       </ButtonBox>
     </Container>
   );
