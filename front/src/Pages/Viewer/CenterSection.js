@@ -9,8 +9,10 @@ import { Link } from "react-router-dom";
 const CenterSection = ({
   data: {
     getContent: { title, markdown }
-  }
+  },
+  data
 }) => {
+  console.log(data);
   return (
     <Fragment>
       <EditButton>

@@ -6,8 +6,8 @@ import { useQuery } from "react-apollo-hooks";
 
 const EditOrWrite = ({
   match: {
-    params: { contentName },
-    url
+    url,
+    params: { contentName }
   }
 }) => {
   const edit = isEdit(url);

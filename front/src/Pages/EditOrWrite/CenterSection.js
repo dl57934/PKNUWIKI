@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import styled from "styled-components";
 import Title from "Components/Title";
 import BasicButton from "Components/BasicButton";
@@ -19,7 +19,7 @@ const useTextContents = () => {
     setValue(value);
   };
 
-  return { value, onChange };
+  return { value, onChange, setValue };
 };
 
 const CenterSection = ({ contentName, isEdit, data }) => {
@@ -29,15 +29,23 @@ const CenterSection = ({ contentName, isEdit, data }) => {
 
   if (isEdit) {
     const {
-      getContent: { hashTag, markdown }
+      getContent: { markdown, hashTag }
     } = data;
-    textarea.value = markdown;
-    hashTagState.value = hashTag.join(" ");
+
+    useEffect(() => {
+      textarea.setValue(markdown);
+      hashTagState.setValue(hashTag.join(" "));
+    }, [data]);
   }
 
   const saveContent = useMutation(EDIT_WRITE_PAGE, {
     update: (proxy, mutationResult) => {
-      console.log(mutationResult);
+      const {
+        data: { saveContent }
+      } = mutationResult;
+      console.log(saveContent);
+      if (saveContent)
+        window.location.href = `http://localhost:3000/contents/${contentName}`;
     },
     variables: {
       contentName,
