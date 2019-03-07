@@ -44,9 +44,12 @@ const CenterContainer = ({ markdown, title, makingTime }) => (
   </ContentBox>
 );
 
+const FIRST_PAGE = 1;
+
 const HistoryContainer = ({ makingTime }) => {
-  const page = Math.ceil(makingTime.length / 5);
-  console.log(page);
+  const LAST_PAGE = Math.ceil(makingTime.length / 5);
+  const [nowPage, setNowPage] = useState(1);
+
   return (
     <HistoryBox>
       <HistoryTitle>수정 내역</HistoryTitle>
@@ -55,6 +58,9 @@ const HistoryContainer = ({ makingTime }) => {
         {makingTime
           .slice(0)
           .reverse()
+          .filter(
+            (data, index) => index < nowPage * 5 && index >= nowPage * 5 - 5
+          )
           .map((data, i) => (
             <HistoryItem key={i}>
               Ver: {makingTime.length - i} 수정 날짜: {data} 작성자: 철수 (
@@ -68,8 +74,18 @@ const HistoryContainer = ({ makingTime }) => {
           ))}
       </ul>
       <HistoryButtonBox>
-        <HistoryButton>◁</HistoryButton>
-        <HistoryButton>▷</HistoryButton>
+        <HistoryButton
+          disabled={nowPage === FIRST_PAGE ? true : false}
+          onClick={() => setNowPage(nowPage - 1)}
+        >
+          ◁
+        </HistoryButton>
+        <HistoryButton
+          disabled={nowPage === LAST_PAGE ? true : false}
+          onClick={() => setNowPage(nowPage + 1)}
+        >
+          ▷
+        </HistoryButton>
       </HistoryButtonBox>
     </HistoryBox>
   );
