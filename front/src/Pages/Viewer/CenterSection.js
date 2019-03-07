@@ -15,39 +15,51 @@ const CenterSection = ({
   console.log(data);
   return (
     <Fragment>
-      <ContentBox>
-        <TitleBox>
-          <ContentName> {title}</ContentName>
-          <EditButton>
-            <Link to={`/edit/${title}`}>
-              <BasicButton text={"수정하기"} color={"skyblue"} />
-            </Link>
-            <CurrentEditText>
-              최근 수정일: {makingTime[makingTime.length - 1]}
-            </CurrentEditText>
-          </EditButton>
-        </TitleBox>
-        <Content>
-          <MarkDownRender markdown={markdown} options={options} />
-        </Content>
-      </ContentBox>
-      <EditBox>
-        <EditTitle>수정 내역</EditTitle>
-        <HorizonTag />
-        <ul>
-          {makingTime
-            .slice(0)
-            .reverse()
-            .map((data, i) => (
-              <EditItem>
-                Ver: {makingTime.length - i} 수정 날짜: {data} (보기)
-              </EditItem>
-            ))}
-        </ul>
-      </EditBox>
+      <CenterContainer
+        title={title}
+        markdown={markdown}
+        makingTime={makingTime}
+      />
+      <EditContainer makingTime={makingTime} />
     </Fragment>
   );
 };
+
+const CenterContainer = ({ markdown, title, makingTime }) => (
+  <ContentBox>
+    <TitleBox>
+      <ContentName> {title}</ContentName>
+      <EditButton>
+        <Link to={`/edit/${title}`}>
+          <BasicButton text={"수정하기"} color={"skyblue"} />
+        </Link>
+        <CurrentEditText>
+          최근 수정일: {makingTime[makingTime.length - 1]}
+        </CurrentEditText>
+      </EditButton>
+    </TitleBox>
+    <Content>
+      <MarkDownRender markdown={markdown} options={options} />
+    </Content>
+  </ContentBox>
+);
+
+const EditContainer = ({ makingTime }) => (
+  <EditBox>
+    <EditTitle>수정 내역</EditTitle>
+    <HorizonTag />
+    <ul>
+      {makingTime
+        .slice(0)
+        .reverse()
+        .map((data, i) => (
+          <EditItem>
+            Ver: {makingTime.length - i} 수정 날짜: {data} (보기)
+          </EditItem>
+        ))}
+    </ul>
+  </EditBox>
+);
 
 export default CenterSection;
 
