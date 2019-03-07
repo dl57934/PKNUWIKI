@@ -63,8 +63,9 @@ const HistoryContainer = ({ makingTime }) => {
           )
           .map((data, i) => (
             <HistoryItem key={i}>
-              Ver: {makingTime.length - i} 수정 날짜: {data} 작성자: 철수 (
-              {i === 0 ? (
+              Ver: {makingTime.length - i - (nowPage - 1) * 5} 수정 날짜: {data}
+              작성자: 철수 (
+              {i === 0 && nowPage === 1 ? (
                 "현재"
               ) : (
                 <a href={`http://localhost:3000/history/${data}`}>보기</a>
