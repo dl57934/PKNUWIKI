@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import MarkDownRender from "react-markdown-renderer";
 import styled from "styled-components";
 import BasicButton from "Components/BasicButton";
@@ -20,7 +20,7 @@ const CenterSection = ({
         markdown={markdown}
         makingTime={makingTime}
       />
-      <EditContainer makingTime={makingTime} />
+      <HistoryContainer makingTime={makingTime} />
     </Fragment>
   );
 };
@@ -44,22 +44,36 @@ const CenterContainer = ({ markdown, title, makingTime }) => (
   </ContentBox>
 );
 
-const EditContainer = ({ makingTime }) => (
-  <EditBox>
-    <EditTitle>수정 내역</EditTitle>
-    <HorizonTag />
-    <ul>
-      {makingTime
-        .slice(0)
-        .reverse()
-        .map((data, i) => (
-          <EditItem>
-            Ver: {makingTime.length - i} 수정 날짜: {data} (보기)
-          </EditItem>
-        ))}
-    </ul>
-  </EditBox>
-);
+const HistoryContainer = ({ makingTime }) => {
+  const page = Math.ceil(makingTime.length / 5);
+  console.log(page);
+  return (
+    <HistoryBox>
+      <HistoryTitle>수정 내역</HistoryTitle>
+      <HorizonTag />
+      <ul>
+        {makingTime
+          .slice(0)
+          .reverse()
+          .map((data, i) => (
+            <HistoryItem key={i}>
+              Ver: {makingTime.length - i} 수정 날짜: {data} 작성자: 철수 (
+              {i === 0 ? (
+                "현재"
+              ) : (
+                <a href={`http://localhost:3000/history/${data}`}>보기</a>
+              )}
+              )
+            </HistoryItem>
+          ))}
+      </ul>
+      <HistoryButtonBox>
+        <HistoryButton>◁</HistoryButton>
+        <HistoryButton>▷</HistoryButton>
+      </HistoryButtonBox>
+    </HistoryBox>
+  );
+};
 
 export default CenterSection;
 
@@ -96,20 +110,34 @@ const EditButton = styled.div`
   margin-right: 50px;
 `;
 
-const EditBox = styled.div`
+const HistoryBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  margin-top: 50px;
 `;
 
-const EditTitle = styled.p`
+const HistoryTitle = styled.p`
   margin-left: 60px;
   font-weight: bold;
   font-size: 25px;
 `;
 
-const EditItem = styled.li`
+const HistoryItem = styled.li`
   color: rgb(109, 109, 109);
   margin-left: 60px;
   margin-bottom: 10px;
+`;
+
+const HistoryButton = styled.button`
+  height: 50px;
+  width: 40px;
+  font-weight: bold;
+  color: skyblue;
+  border-radius: 5%;
+  font-size: 30px;
+`;
+
+const HistoryButtonBox = styled.div`
+  display: flex;
+  justify-content: center;
 `;

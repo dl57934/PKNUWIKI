@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const BackgroundView = ({ CenterSection, isEdit, contentName, data }) => {
@@ -42,7 +42,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
-  height: 100px;
+  height: 50px;
   background-color: white;
 `;
 
