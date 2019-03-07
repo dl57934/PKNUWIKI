@@ -22,7 +22,9 @@ const CenterSection = ({
             <Link to={`/edit/${title}`}>
               <BasicButton text={"수정하기"} color={"skyblue"} />
             </Link>
-            <CurrentEditText>최근 수정일: {makingTime}</CurrentEditText>
+            <CurrentEditText>
+              최근 수정일: {makingTime[makingTime.length - 1]}
+            </CurrentEditText>
           </EditButton>
         </TitleBox>
         <Content>
@@ -32,6 +34,16 @@ const CenterSection = ({
       <EditBox>
         <EditTitle>수정 내역</EditTitle>
         <HorizonTag />
+        <ul>
+          {makingTime
+            .slice(0)
+            .reverse()
+            .map((data, i) => (
+              <EditItem>
+                Ver: {i} 수정 날짜: {data}
+              </EditItem>
+            ))}
+        </ul>
       </EditBox>
     </Fragment>
   );
@@ -43,6 +55,10 @@ const ContentName = styled.p`
   margin-left: 5%;
   font-weight: bold;
   font-size: 40px;
+`;
+
+const CurrentEditText = styled.p`
+  color: rgb(109, 109, 109);
 `;
 
 const Content = styled.div`
@@ -69,6 +85,8 @@ const EditButton = styled.div`
 `;
 
 const EditBox = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-top: 80px;
 `;
 
@@ -78,8 +96,7 @@ const EditTitle = styled.p`
   font-size: 25px;
 `;
 
-const EditList = styled.p``;
-
-const CurrentEditText = styled.p`
+const EditItem = styled.li`
   color: rgb(109, 109, 109);
+  margin-left: 60px;
 `;

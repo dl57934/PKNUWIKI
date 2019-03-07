@@ -9,25 +9,38 @@ export const searchResult = ({ contentsName }) => {
 
 export const getContent = async ({ contentName }) => {
   const result = await bringContentFromDB(contentName);
+  const editTime = await bringEditTime(contentName);
+
+  let editTimeArray = new Array();
+  editTime.map(data => editTimeArray.push(data.makingTime));
 
   const currentContent = result[result.length - 1];
 
   if (currentContent)
-    return {
-      title: currentContent.title,
-      markdown: currentContent.content,
-      hashTag: currentContent.hashTag,
-      historyLength: result.length,
-      makingTime: currentContent.makingTime
-    };
-  else
-    return {
-      title: "",
-      markdown: "",
-      hashTag: [""],
-      historyLength: 0,
-      makingTime: ""
-    };
+    return getContentReturn(
+      currentContent.title,
+      currentContent.content,
+      currentContent.hashTag,
+      result.length,
+      editTimeArray
+    );
+  else getContentReturn();
+};
+
+const getContentReturn = (
+  title = "",
+  markdown = "",
+  hashTag = [""],
+  historyLength = 0,
+  makingTime = [""]
+) => {
+  return {
+    title,
+    markdown,
+    hashTag,
+    historyLength,
+    makingTime
+  };
 };
 
 export const getHistoryLength = async ({ contentName }) => {};
@@ -62,7 +75,14 @@ export const saveContent = async ({ contentName, markdown, hashTag }) => {
 const bringContentFromDB = async contentName => {
   const result = await makingContentModel({
     title: contentName
-  }).find({ title: contentName });
+  }).find({});
 
   return result;
+};
+
+const bringEditTime = async contentName => {
+  const makingTime = await makingContentModel({
+    title: contentName
+  }).find({}, { makingTime: true, _id: false });
+  return makingTime;
 };
