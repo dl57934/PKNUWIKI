@@ -40,7 +40,7 @@ const CenterSection = ({
             .reverse()
             .map((data, i) => (
               <EditItem>
-                Ver: {i} 수정 날짜: {data}
+                Ver: {makingTime.length - i} 수정 날짜: {data} (보기)
               </EditItem>
             ))}
         </ul>
@@ -99,4 +99,5 @@ const EditTitle = styled.p`
 const EditItem = styled.li`
   color: rgb(109, 109, 109);
   margin-left: 60px;
+  margin-bottom: 10px;
 `;

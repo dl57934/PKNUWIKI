@@ -24,6 +24,7 @@ const App = () => {
               <Route path={"/searchResult/:name"} component={SearchResult} />
               <Route path={"/login"} component={Login} />
               <Route path={"/signUp"} component={SingUp} />
+              <Route path={"/history/:contentName/:ver"} component={Viewer} />
               <Route path={"/contents/:contentName"} component={Viewer} />
               <Route path={"/edit/:contentName"} component={EditOrWrite} />
               <Route path={"/write/:contentName"} component={EditOrWrite} />

@@ -76,7 +76,6 @@ const bringContentFromDB = async contentName => {
   const result = await makingContentModel({
     title: contentName
   }).find({});
-
   return result;
 };
 
