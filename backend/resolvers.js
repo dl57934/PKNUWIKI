@@ -1,3 +1,6 @@
+import makingContentModel from "./db/models";
+import { searchResult, getContent, saveContent } from "./db/calculate";
+
 const resolvers = {
   Query: {
     firstSchema: () => "First Schema",
@@ -19,23 +22,3 @@ const resolvers = {
 };
 
 export default resolvers;
-
-const searchResult = ({ contentsName }) => {
-  return {
-    title: [contentsName],
-    explanation: ["zz"]
-  };
-};
-
-const getContent = ({ contentName }) => {
-  return {
-    title: contentName,
-    markdown: "#### hihi",
-    hashTag: ["#hihi", "#안녕하세요."]
-  };
-};
-
-const saveContent = ({ contentName, markdown, hashTag }) => {
-  console.log(contentName, markdown, hashTag);
-  return true;
-};

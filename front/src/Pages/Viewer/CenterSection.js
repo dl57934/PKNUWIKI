@@ -8,11 +8,9 @@ import { Link } from "react-router-dom";
 
 const CenterSection = ({
   data: {
-    getContent: { title, markdown }
-  },
-  data
+    getContent: { title, markdown, historyLength }
+  }
 }) => {
-  console.log(data);
   return (
     <Fragment>
       <EditButton>
@@ -26,10 +24,6 @@ const CenterSection = ({
           <MarkDownRender markdown={markdown} options={options} />
         </Content>
       </ContentBox>
-      <EditList>
-        <EditTitle>수정 내역</EditTitle>
-        <HorizonTag />
-      </EditList>
     </Fragment>
   );
 };

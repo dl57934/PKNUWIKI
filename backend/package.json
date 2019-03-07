@@ -11,6 +11,8 @@
     "start": "nodemon --exec babel-node index.js"
   },
   "dependencies": {
-    "graphql-yoga": "^1.17.4"
+    "graphql-yoga": "^1.17.4",
+    "mongoose": "^5.4.17",
+    "node-mailer": "^0.1.1"
   }
 }

@@ -12,9 +12,13 @@ const Viewer = ({
   const { data, loading } = useQuery(VIEWER_QUERY, {
     variables: { contentName }
   });
+  console.log(data);
 
   if (loading) return "loading";
-  else return <BackgroundView CenterSection={CenterSection} data={data} />;
+  else if (data.getContent.historyLength === 0) {
+    alert("존재하지 않는 페이지 입니다");
+    return (window.location.href = `http://localhost:3000/write/${contentName}`);
+  } else return <BackgroundView CenterSection={CenterSection} data={data} />;
 };
 
 export default Viewer;

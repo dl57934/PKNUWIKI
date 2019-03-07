@@ -5,6 +5,7 @@ const VIEWER_QUERY = gql`
   query VIEWER_QUERY($contentName: String!) {
     getContent(contentName: $contentName) {
       ...ContentParts
+      historyLength
     }
   }
   ${CONTENT_FRAGMENT}

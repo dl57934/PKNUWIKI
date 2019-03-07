@@ -20,7 +20,7 @@ export default BackgroundView;
 const Container = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 3fr 1fr;
-  height: 1500px;
+  height: auto !important;
   @media all and (max-width: 1000px) {
     display: flex;
     transition-duration: 1s;
@@ -40,6 +40,7 @@ const Container = styled.div`
 
 const LeftBox = styled.div``;
 const CenterBox = styled.div`
+  margin-bottom: 100px white;
   background-color: white;
 `;
 const RightBox = styled.div``;

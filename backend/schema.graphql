@@ -23,4 +23,5 @@ type Content {
   title: String!
   markdown: String!
   hashTag: [String]!
+  historyLength: Int!
 }

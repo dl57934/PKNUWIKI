@@ -28,6 +28,7 @@ const CenterSection = ({ contentName, isEdit, data }) => {
   const hashTagState = useInputTag("");
 
   if (isEdit) {
+    console.log(data);
     const {
       getContent: { markdown, hashTag }
     } = data;
