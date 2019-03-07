@@ -17,14 +17,16 @@ export const getContent = async ({ contentName }) => {
       title: currentContent.title,
       markdown: currentContent.content,
       hashTag: currentContent.hashTag,
-      historyLength: result.length
+      historyLength: result.length,
+      makingTime: currentContent.makingTime
     };
   else
     return {
       title: "",
       markdown: "",
       hashTag: [""],
-      historyLength: 0
+      historyLength: 0,
+      makingTime: ""
     };
 };
 

@@ -8,22 +8,31 @@ import { Link } from "react-router-dom";
 
 const CenterSection = ({
   data: {
-    getContent: { title, markdown, historyLength }
-  }
+    getContent: { title, markdown, historyLength, makingTime }
+  },
+  data
 }) => {
+  console.log(data);
   return (
     <Fragment>
-      <EditButton>
-        <Link to={`/edit/${title}`}>
-          <BasicButton text={"수정하기"} color={"skyblue"} />
-        </Link>
-      </EditButton>
       <ContentBox>
-        <ContentName> {title}</ContentName>
+        <TitleBox>
+          <ContentName> {title}</ContentName>
+          <EditButton>
+            <Link to={`/edit/${title}`}>
+              <BasicButton text={"수정하기"} color={"skyblue"} />
+            </Link>
+            <CurrentEditText>최근 수정일: {makingTime}</CurrentEditText>
+          </EditButton>
+        </TitleBox>
         <Content>
           <MarkDownRender markdown={markdown} options={options} />
         </Content>
       </ContentBox>
+      <EditBox>
+        <EditTitle>수정 내역</EditTitle>
+        <HorizonTag />
+      </EditBox>
     </Fragment>
   );
 };
@@ -45,17 +54,32 @@ const ContentBox = styled.div`
   margin-top: 40px;
 `;
 
+const TitleBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const EditButton = styled.div`
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-end;
   margin-top: 40px;
   margin-right: 50px;
 `;
 
-const EditList = styled.div``;
+const EditBox = styled.div`
+  margin-top: 80px;
+`;
 
 const EditTitle = styled.p`
-  margin-left: 30px;
+  margin-left: 60px;
   font-weight: bold;
   font-size: 25px;
+`;
+
+const EditList = styled.p``;
+
+const CurrentEditText = styled.p`
+  color: rgb(109, 109, 109);
 `;

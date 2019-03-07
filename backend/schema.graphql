@@ -24,4 +24,5 @@ type Content {
   markdown: String!
   hashTag: [String]!
   historyLength: Int!
+  makingTime: String!
 }

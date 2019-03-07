@@ -5,5 +5,6 @@ export const CONTENT_FRAGMENT = gql`
     title
     markdown
     hashTag
+    makingTime
   }
 `;
