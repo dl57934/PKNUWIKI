@@ -10,6 +10,7 @@ import Login from "Pages/Login";
 import SingUp from "Pages/SignUp";
 import Viewer from "Pages/Viewer";
 import EditOrWrite from "Pages/EditOrWrite";
+import Bottom from "./Components/Bottom";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           </BrowserRouter>
         </ApolloHooksProvider>
       </ApolloProvider>
+      <Bottom />
     </Fragment>
   );
 };

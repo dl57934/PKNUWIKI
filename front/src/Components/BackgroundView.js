@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 
 const BackgroundView = ({ CenterSection, isEdit, contentName, data }) => {
@@ -11,6 +11,9 @@ const BackgroundView = ({ CenterSection, isEdit, contentName, data }) => {
       <RightBox id="rightBox">
         <CurrentlyChange />
       </RightBox>
+      <div />
+      <Box />
+      <div />
     </Container>
   );
 };
@@ -38,9 +41,13 @@ const Container = styled.div`
   }
 `;
 
+const Box = styled.div`
+  height: 100px;
+  background-color: white;
+`;
+
 const LeftBox = styled.div``;
 const CenterBox = styled.div`
-  margin-bottom: 100px white;
   background-color: white;
 `;
 const RightBox = styled.div``;
