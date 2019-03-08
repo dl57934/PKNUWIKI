@@ -32,10 +32,23 @@ const CenterSection = () => {
   });
 
   const isCorrectSignUp = () => {
-    if (isSamePassword) {
-      console.log(isSamePassword);
-      return true;
-    } else return false;
+    if (
+      !isSamePassword ||
+      isSchoolEmail() ||
+      name.value.length < 2 ||
+      isValidPassword()
+    )
+      alert("입력창을 확인하기 바랍니다.");
+    else return false;
+  };
+
+  const isSchoolEmail = () => {
+    return "pukyong.ac.kr" !== id.value.split("@")[1];
+  };
+
+  const isValidPassword = () => {
+    const passwordCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+    return !passwordCheck.test(password.value);
   };
 
   return (
@@ -47,12 +60,16 @@ const CenterSection = () => {
         <LoginInput placeholder="이름을 입력해주세요." type="text" {...name} />
         <Preface>아이디</Preface>
         <LoginInput placeholder="id를 입력해주세요." type="email" {...id} />
+        <IdSummary>@pukyong.ac.kr만 회원가입이 가능합니다.</IdSummary>
         <Preface>비밀번호</Preface>
         <LoginInput
           type="password"
           placeholder="비밀번호를 입력해주세요."
           {...password}
         />
+        <IdSummary>
+          최소 8자리에 숫자, 문자, 특수 문자 각각 1개 이상 포함
+        </IdSummary>
         <Preface>비밀번호 확인</Preface>
         <PasswordCheckBox>
           <LoginInput
@@ -65,11 +82,7 @@ const CenterSection = () => {
         </PasswordCheckBox>
       </InputBox>
       <ButtonBox>
-        <SignUpButton
-          onClick={() =>
-            isCorrectSignUp() ? signUp() : alert("입력된 값들을 확인해주세요!!")
-          }
-        >
+        <SignUpButton onClick={() => (isCorrectSignUp() ? signUp() : null)}>
           회원가입
         </SignUpButton>
       </ButtonBox>
@@ -100,6 +113,12 @@ const InputBox = styled.div`
     transition-duration: 0.5s;
     font-size: 15px;
   }
+`;
+
+const IdSummary = styled.p`
+  margin-top: 10px;
+  color: grey;
+  margin-bottom: 0px;
 `;
 
 const PasswordCheckBox = styled.div`

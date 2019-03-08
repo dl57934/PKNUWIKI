@@ -13,6 +13,7 @@
   "dependencies": {
     "graphql-yoga": "^1.17.4",
     "mongoose": "^5.4.17",
+    "mysql": "^2.16.0",
     "node-mailer": "^0.1.1"
   }
 }

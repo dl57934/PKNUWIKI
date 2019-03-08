@@ -103,6 +103,7 @@ const CurrentEditText = styled.p`
 
 const Content = styled.div`
   margin-left: 5%;
+  margin-right: 10%;
 `;
 
 const ContentBox = styled.div`
@@ -140,6 +141,9 @@ const HistoryItem = styled.li`
   color: rgb(109, 109, 109);
   margin-left: 60px;
   margin-bottom: 10px;
+  @media (max-width: 600px) {
+    font-size: 10px;
+  }
 `;
 
 const HistoryButton = styled.button`
