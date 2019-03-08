@@ -1,10 +1,10 @@
 import makingContentModel from "./db/models";
+import { searchResult } from "./db/calculate";
 import {
-  searchResult,
   getContent,
-  saveContent,
-  getHistory
-} from "./db/calculate";
+  getHistory,
+  saveContent
+} from "./db/EditAndWriteCalculate";
 
 const resolvers = {
   Query: {

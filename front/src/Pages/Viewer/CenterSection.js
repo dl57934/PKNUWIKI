@@ -6,20 +6,22 @@ import HorizonTag from "Components/HorizonTag";
 import options from "Components/MarkdownOptions";
 import { Link } from "react-router-dom";
 
-const CenterSection = ({ data: { title, markdown, makingTime } }) => {
+const CenterSection = ({ data: { title, markdown, makingTime, ver } }) => {
+  console.log(ver);
   return (
     <Fragment>
       <CenterContainer
         title={title}
         markdown={markdown}
         makingTime={makingTime}
+        ver={ver}
       />
-      <HistoryContainer makingTime={makingTime} title={title} />
+      <HistoryContainer makingTime={makingTime} title={title} ver={ver} />
     </Fragment>
   );
 };
 
-const CenterContainer = ({ markdown, title, makingTime }) => (
+const CenterContainer = ({ markdown, title, ver }) => (
   <ContentBox>
     <TitleBox>
       <ContentName> {title}</ContentName>
@@ -27,9 +29,7 @@ const CenterContainer = ({ markdown, title, makingTime }) => (
         <Link to={`/edit/${title}`}>
           <BasicButton text={"수정하기"} color={"skyblue"} />
         </Link>
-        <CurrentEditText>
-          최근 수정일: {makingTime[makingTime.length - 1]}
-        </CurrentEditText>
+        <CurrentEditText>최근 수정일: {ver}</CurrentEditText>
       </EditButton>
     </TitleBox>
     <Content>
@@ -40,7 +40,7 @@ const CenterContainer = ({ markdown, title, makingTime }) => (
 
 const FIRST_PAGE = 1;
 
-const HistoryContainer = ({ makingTime, title }) => {
+const HistoryContainer = ({ makingTime, title, ver }) => {
   const LAST_PAGE = Math.ceil(makingTime.length / 5);
   const [nowPage, setNowPage] = useState(1);
 
@@ -57,9 +57,10 @@ const HistoryContainer = ({ makingTime, title }) => {
           )
           .map((data, i) => (
             <HistoryItem key={i}>
-              Ver: {makingTime.length - i - (nowPage - 1) * 5} 수정 날짜: {data}
+              Ver: {makingTime.length - i - (nowPage - 1) * 5} 수정 날짜:{" "}
+              {data + " "}
               작성자: 철수 (
-              {i === 0 && nowPage === FIRST_PAGE ? (
+              {data === ver ? (
                 "현재"
               ) : (
                 <a href={`http://localhost:3000/history/${title}/${data}`}>

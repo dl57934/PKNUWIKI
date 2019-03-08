@@ -24,22 +24,26 @@ const Viewer = ({
     variables = { contentName };
   }
 
-  const { data, loading } = useQuery(QUERY, {
+  let { data, loading } = useQuery(QUERY, {
     variables
   });
 
   if (loading) return "loading";
-  else if (IS_HISTORY_PAGE)
+  else if (IS_HISTORY_PAGE) {
+    data.getHistory["ver"] = params.ver;
     return (
       <BackgroundView CenterSection={CenterSection} data={data.getHistory} />
     );
-  else if (data.getContent.makingTime[0] === NOT_EXIST_PAGE) {
+  } else if (data.getContent.makingTime[0] === NOT_EXIST_PAGE) {
     alert("존재하지 않는 페이지 입니다");
     return (window.location.href = `http://localhost:3000/write/${contentName}`);
-  } else
+  } else {
+    const { makingTime } = data.getContent;
+    data.getContent["ver"] = makingTime[makingTime.length - 1];
     return (
       <BackgroundView CenterSection={CenterSection} data={data.getContent} />
     );
+  }
 };
 
 export default Viewer;
