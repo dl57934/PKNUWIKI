@@ -1,14 +1,20 @@
 import gql from "graphql-tag";
 import { CONTENT_FRAGMENT } from "Components/fragment";
 
-const VIEWER_QUERY = gql`
+export const VIEWER_QUERY = gql`
   query VIEWER_QUERY($contentName: String!) {
     getContent(contentName: $contentName) {
       ...ContentParts
-      historyLength
     }
   }
   ${CONTENT_FRAGMENT}
 `;
 
-export default VIEWER_QUERY;
+export const HISTORY_QUERY = gql`
+  query HISTORY_QUERY($contentName: String!, $makingTime: String!) {
+    getHistory(contentName: $contentName, makingTime: $makingTime) {
+      ...ContentParts
+    }
+  }
+  ${CONTENT_FRAGMENT}
+`;

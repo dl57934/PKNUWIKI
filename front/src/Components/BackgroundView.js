@@ -42,7 +42,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
-  height: 50px;
+  height: 100px;
   background-color: white;
 `;
 

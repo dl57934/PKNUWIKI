@@ -19,6 +19,7 @@ const CenterSection = () => {
     if (password.value === passwordCheck.value) setPassword(true);
     else setPassword(false);
   }, [password.value, passwordCheck.value]);
+
   const signUp = useMutation(SIGN_UP_PAGE, {
     update: (proxy, mutationResult) => {
       console.log(mutationResult);

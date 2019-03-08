@@ -2,6 +2,7 @@ type Query {
   firstSchema: String!
   searchResult(contentsName: String!): SearchContent!
   getContent(contentName: String!): Content!
+  getHistory(contentName: String!, makingTime: String!): Content!
 }
 
 type Mutation {
@@ -23,6 +24,5 @@ type Content {
   title: String!
   markdown: String!
   hashTag: [String]!
-  historyLength: Int!
   makingTime: [String]!
 }

@@ -5,7 +5,9 @@ const resolvers = {
   Query: {
     firstSchema: () => "First Schema",
     searchResult: (_, { contentsName }) => searchResult({ contentsName }),
-    getContent: (_, { contentName }) => getContent({ contentName })
+    getContent: (_, { contentName }) => getContent({ contentName }),
+    getHistory: (_, { contentName, makingTime }) =>
+      getHistory(contentName, makingTime)
   },
   Mutation: {
     saveContent: (_, { contentName, markdown, hashTag }) =>
@@ -19,6 +21,16 @@ const resolvers = {
       return true;
     }
   }
+};
+
+const getHistory = (contentName, makingTime) => {
+  console.log(contentName, makingTime);
+  return {
+    title: "",
+    markdown: "",
+    hashTag: [""],
+    makingTime: [""]
+  };
 };
 
 export default resolvers;

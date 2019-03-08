@@ -15,30 +15,27 @@ export const getContent = async ({ contentName }) => {
   editTime.map(data => editTimeArray.push(data.makingTime));
 
   const currentContent = result[result.length - 1];
-
+  console.log(currentContent);
   if (currentContent)
     return getContentReturn(
       currentContent.title,
       currentContent.content,
       currentContent.hashTag,
-      result.length,
       editTimeArray
     );
-  else getContentReturn();
+  else return getContentReturn();
 };
 
 const getContentReturn = (
   title = "",
   markdown = "",
   hashTag = [""],
-  historyLength = 0,
   makingTime = [""]
 ) => {
   return {
     title,
     markdown,
     hashTag,
-    historyLength,
     makingTime
   };
 };

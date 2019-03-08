@@ -2,20 +2,33 @@ import React from "react";
 import CenterSection from "./CenterSection";
 import BackgroundView from "Components/BackgroundView";
 import { useQuery } from "react-apollo-hooks";
-import VIEWER_QUERY from "./query";
+import { VIEWER_QUERY, HISTORY_QUERY } from "./query";
+
+let QUERY;
+let variables;
 
 const Viewer = ({
   match: {
-    params: { contentName }
+    params: { contentName },
+    params
   }
 }) => {
-  const { data, loading } = useQuery(VIEWER_QUERY, {
-    variables: { contentName }
+  const IS_HISTORY_PAGE = params.ver;
+
+  if (IS_HISTORY_PAGE) {
+    QUERY = HISTORY_QUERY;
+    variables = { contentName, makingTime: params.ver };
+  } else {
+    QUERY = VIEWER_QUERY;
+    variables = { contentName };
+  }
+
+  const { data, loading } = useQuery(QUERY, {
+    variables
   });
   console.log(data);
-
   if (loading) return "loading";
-  else if (data.getContent.historyLength === 0) {
+  else if (data.getContent.makingTime[0] === "") {
     alert("존재하지 않는 페이지 입니다");
     return (window.location.href = `http://localhost:3000/write/${contentName}`);
   } else return <BackgroundView CenterSection={CenterSection} data={data} />;

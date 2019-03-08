@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const CenterSection = ({
   data: {
-    getContent: { title, markdown, historyLength, makingTime }
+    getContent: { title, markdown, makingTime }
   },
   data
 }) => {
@@ -20,7 +20,7 @@ const CenterSection = ({
         markdown={markdown}
         makingTime={makingTime}
       />
-      <HistoryContainer makingTime={makingTime} />
+      <HistoryContainer makingTime={makingTime} title={title} />
     </Fragment>
   );
 };
@@ -46,7 +46,7 @@ const CenterContainer = ({ markdown, title, makingTime }) => (
 
 const FIRST_PAGE = 1;
 
-const HistoryContainer = ({ makingTime }) => {
+const HistoryContainer = ({ makingTime, title }) => {
   const LAST_PAGE = Math.ceil(makingTime.length / 5);
   const [nowPage, setNowPage] = useState(1);
 
@@ -65,10 +65,12 @@ const HistoryContainer = ({ makingTime }) => {
             <HistoryItem key={i}>
               Ver: {makingTime.length - i - (nowPage - 1) * 5} 수정 날짜: {data}
               작성자: 철수 (
-              {i === 0 && nowPage === 1 ? (
+              {i === 0 && nowPage === FIRST_PAGE ? (
                 "현재"
               ) : (
-                <a href={`http://localhost:3000/history/${data}`}>보기</a>
+                <a href={`http://localhost:3000/history/${title}/${data}`}>
+                  보기
+                </a>
               )}
               )
             </HistoryItem>

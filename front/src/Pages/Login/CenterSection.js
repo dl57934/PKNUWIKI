@@ -20,7 +20,6 @@ const CenterSection = () => {
       password: password.value
     }
   });
-
   return (
     <Container>
       <Title text={`로그인`} />
