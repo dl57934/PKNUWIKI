@@ -5,6 +5,8 @@ import {
   getHistory,
   saveContent
 } from "./db/EditAndWriteCalculate";
+import signIn from "./auth/signIn";
+import signUp from "./auth/signUp";
 
 const resolvers = {
   Query: {
@@ -21,10 +23,7 @@ const resolvers = {
       console.log(id, password);
       return true;
     },
-    signUp: (_, { id, password, name }) => {
-      console.log(id, password, name);
-      return true;
-    }
+    signUp: (_, { id, password, name }) => signUp({ id, password, name })
   }
 };
 

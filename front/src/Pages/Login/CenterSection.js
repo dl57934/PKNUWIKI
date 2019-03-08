@@ -25,7 +25,7 @@ const CenterSection = () => {
       <Title text={`로그인`} />
       <WebTitle />
       <InputBox>
-        <Preface>UserName</Preface>
+        <Preface>ID</Preface>
         <LoginInput placeholder="id를 입력해주세요." type="id" {...id} />
         <Preface>Password</Preface>
         <LoginInput

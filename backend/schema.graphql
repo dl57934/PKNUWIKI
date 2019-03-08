@@ -11,8 +11,8 @@ type Mutation {
     markdown: String!
     hashTag: [String]
   ): Boolean!
-  login(id: String!, password: String!): Boolean!
-  signUp(name: String!, id: String!, password: String!): Boolean!
+  login(id: String!, password: String!): SignResult!
+  signUp(name: String!, id: String!, password: String!): SignResult!
 }
 
 type SearchContent {
@@ -25,4 +25,9 @@ type Content {
   markdown: String!
   hashTag: [String]!
   makingTime: [String]!
+}
+
+type SignResult {
+  message: String!
+  success: Boolean!
 }

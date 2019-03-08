@@ -39,7 +39,7 @@ const CenterSection = () => {
       isValidPassword()
     )
       alert("입력창을 확인하기 바랍니다.");
-    else return false;
+    else return true;
   };
 
   const isSchoolEmail = () => {
