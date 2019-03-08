@@ -1,5 +1,10 @@
 import makingContentModel from "./db/models";
-import { searchResult, getContent, saveContent } from "./db/calculate";
+import {
+  searchResult,
+  getContent,
+  saveContent,
+  getHistory
+} from "./db/calculate";
 
 const resolvers = {
   Query: {
@@ -21,16 +26,6 @@ const resolvers = {
       return true;
     }
   }
-};
-
-const getHistory = (contentName, makingTime) => {
-  console.log(contentName, makingTime);
-  return {
-    title: "",
-    markdown: "",
-    hashTag: [""],
-    makingTime: [""]
-  };
 };
 
 export default resolvers;

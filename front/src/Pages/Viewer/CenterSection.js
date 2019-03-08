@@ -6,13 +6,7 @@ import HorizonTag from "Components/HorizonTag";
 import options from "Components/MarkdownOptions";
 import { Link } from "react-router-dom";
 
-const CenterSection = ({
-  data: {
-    getContent: { title, markdown, makingTime }
-  },
-  data
-}) => {
-  console.log(data);
+const CenterSection = ({ data: { title, markdown, makingTime } }) => {
   return (
     <Fragment>
       <CenterContainer
