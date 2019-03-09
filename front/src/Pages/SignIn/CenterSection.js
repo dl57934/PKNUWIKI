@@ -11,6 +11,7 @@ import LOGIN_PAGE from "./query";
 const CenterSection = () => {
   const email = useInputTag("");
   const password = useInputTag("");
+
   const sendLogin = useMutation(LOGIN_PAGE, {
     update: (proxy, mutationResult) => {
       const { success, message } = mutationResult.data.signIn;
@@ -25,6 +26,7 @@ const CenterSection = () => {
       password: password.value
     }
   });
+
   return (
     <Container>
       <Title text={`로그인`} />

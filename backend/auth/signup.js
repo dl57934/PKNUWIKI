@@ -2,16 +2,11 @@ import { mariaDB } from "../db/connectDB";
 import { createTransport } from "nodemailer";
 
 const signUp = async ({ email, name, password }) => {
-  console.log(email);
-  mariaDB.connect();
-  if (await isDuplicatedAccount(email)) {
-    mariaDB.end();
+  if (await isDuplicatedAccount(email))
     return { success: false, message: "중복되는 아이디가 존재합니다." };
-  } else {
+  else {
     await saveAccount({ email, password, name });
-    mariaDB.end();
     await sendEmail(email);
-
     return {
       message: "회원가입이 완료되었습니다. 부경대학교 이메일을 확인해주세요!",
       success: true
@@ -20,18 +15,18 @@ const signUp = async ({ email, name, password }) => {
 };
 
 const isDuplicatedAccount = async email => {
-  const SearchSQL = `SELECT * FROM pknu_wiki_member WHERE email = '${email}'`;
+  const SEARCH_DUPLICATED_ID_SQL = `SELECT * FROM pknu_wiki_member WHERE email = '${email}'`;
   const DUPLICATED_ID = 1;
 
-  const result = await mariaDB.query(SearchSQL);
-  console.log(result);
-  return result;
+  const [rows, tables] = await mariaDB.query(SEARCH_DUPLICATED_ID_SQL);
+  console.log(rows);
+  if (rows.length === DUPLICATED_ID) return true;
+  else return false;
 };
 
 const saveAccount = async ({ email, password, name }) => {
-  const SaveSql = `INSERT INTO pknu_wiki_member (email, name, password, token, emailcheck) values('${email}', '${name}', '${password}', '0','0');`;
-  const result = mariaDB.query(SaveSql);
-  console.log(result);
+  const SAVE_ACCOUNT_SQL = `INSERT INTO pknu_wiki_member (email, name, password, token, emailcheck) values('${email}', '${name}', '${password}', '0','0');`;
+  const [rows, tables] = await mariaDB.query(SAVE_ACCOUNT_SQL);
 };
 
 const sendEmail = (email, token) => {
