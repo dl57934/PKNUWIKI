@@ -109,7 +109,7 @@ const SearchInput = styled.input.attrs({
 `;
 
 const LoginText = styled.a.attrs({
-  href: "/login"
+  href: "/signIn"
 })`
   color: white;
   font-weight: 700;

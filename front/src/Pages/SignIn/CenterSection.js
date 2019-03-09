@@ -13,7 +13,12 @@ const CenterSection = () => {
   const password = useInputTag("");
   const sendLogin = useMutation(LOGIN_PAGE, {
     update: (proxy, mutationResult) => {
+      const { success, message } = mutationResult.data.signIn;
       console.log(mutationResult);
+      if (success) {
+        alert(message);
+        window.location.href = `http://localhost:3000/부경위키:대문`;
+      } else alert(message);
     },
     variables: {
       email: email.value,

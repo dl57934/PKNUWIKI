@@ -9,7 +9,7 @@ import { useMutation } from "react-apollo-hooks";
 import SIGN_UP_PAGE from "./query";
 
 const CenterSection = () => {
-  const id = useInputTag("");
+  const email = useInputTag("");
   const password = useInputTag("");
   const name = useInputTag("");
   const passwordCheck = useInputTag("");
@@ -27,7 +27,7 @@ const CenterSection = () => {
     variables: {
       name: name.value,
       password: password.value,
-      id: id.value
+      email: email.value
     }
   });
 
@@ -43,7 +43,7 @@ const CenterSection = () => {
   };
 
   const isSchoolEmail = () => {
-    return "pukyong.ac.kr" !== id.value.split("@")[1];
+    return "pukyong.ac.kr" !== email.value.split("@")[1];
   };
 
   const isValidPassword = () => {
@@ -59,7 +59,7 @@ const CenterSection = () => {
         <Preface>이름</Preface>
         <LoginInput placeholder="이름을 입력해주세요." type="text" {...name} />
         <Preface>아이디</Preface>
-        <LoginInput placeholder="id를 입력해주세요." type="email" {...id} />
+        <LoginInput placeholder="id를 입력해주세요." type="email" {...email} />
         <IdSummary>@pukyong.ac.kr만 회원가입이 가능합니다.</IdSummary>
         <Preface>비밀번호</Preface>
         <LoginInput
