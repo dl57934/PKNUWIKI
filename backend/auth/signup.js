@@ -10,7 +10,7 @@ const signUp = async ({ id, name, password }) => {
   } else {
     await saveAccount({ id, password, name });
     mariaDB.end();
-    // await sendEmail(id);
+    await sendEmail(id);
 
     return {
       message: "회원가입이 완료되었습니다. 부경대학교 이메일을 확인해주세요!",

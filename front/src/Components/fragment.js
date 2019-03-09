@@ -8,3 +8,10 @@ export const CONTENT_FRAGMENT = gql`
     makingTime
   }
 `;
+
+export const SIGN_FRAGMENT = gql`
+  fragment SignResultParts on SignResult {
+    message
+    success
+  }
+`;

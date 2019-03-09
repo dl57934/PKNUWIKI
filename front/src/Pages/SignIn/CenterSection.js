@@ -9,14 +9,14 @@ import { useMutation } from "react-apollo-hooks";
 import LOGIN_PAGE from "./query";
 
 const CenterSection = () => {
-  const id = useInputTag("");
+  const email = useInputTag("");
   const password = useInputTag("");
   const sendLogin = useMutation(LOGIN_PAGE, {
     update: (proxy, mutationResult) => {
       console.log(mutationResult);
     },
     variables: {
-      id: id.value,
+      email: email.value,
       password: password.value
     }
   });
@@ -26,7 +26,7 @@ const CenterSection = () => {
       <WebTitle />
       <InputBox>
         <Preface>ID</Preface>
-        <LoginInput placeholder="id를 입력해주세요." type="id" {...id} />
+        <LoginInput placeholder="id를 입력해주세요." type="id" {...email} />
         <Preface>Password</Preface>
         <LoginInput
           type="password"

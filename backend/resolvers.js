@@ -19,11 +19,8 @@ const resolvers = {
   Mutation: {
     saveContent: (_, { contentName, markdown, hashTag }) =>
       saveContent({ contentName, markdown, hashTag }),
-    login: (_, { id, password }) => {
-      console.log(id, password);
-      return true;
-    },
-    signUp: (_, { id, password, name }) => signUp({ id, password, name })
+    signIn: (_, { email, password }) => signIn({ email, password }),
+    signUp: (_, { email, password, name }) => signUp({ email, password, name })
   }
 };
 

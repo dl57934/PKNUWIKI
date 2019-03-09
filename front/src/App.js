@@ -6,7 +6,7 @@ import client from "Client";
 import Header from "Components/Header";
 import Home from "Pages/Home";
 import SearchResult from "Pages/SearchResult";
-import Login from "Pages/Login";
+import SignIn from "Pages/SignIn";
 import SingUp from "Pages/SignUp";
 import Viewer from "Pages/Viewer";
 import EditOrWrite from "Pages/EditOrWrite";
@@ -22,7 +22,7 @@ const App = () => {
             <Switch>
               <Route exact={true} path={"/부경위키:대문"} component={Home} />
               <Route path={"/searchResult/:name"} component={SearchResult} />
-              <Route path={"/login"} component={Login} />
+              <Route path={"/signIn"} component={SignIn} />
               <Route path={"/signUp"} component={SingUp} />
               <Route path={"/history/:contentName/:ver"} component={Viewer} />
               <Route path={"/contents/:contentName"} component={Viewer} />
