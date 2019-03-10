@@ -3,7 +3,7 @@ type Query {
   searchResult(contentsName: String!): SearchContent!
   getContent(contentName: String!): Content!
   getHistory(contentName: String!, makingTime: String!): Content!
-  getCurrentlyChangeDocument: [String]!
+  getCurrentlyChangeDocument: [ChangeList]!
 }
 
 type Mutation {
@@ -33,4 +33,9 @@ type Content {
 type SignResult {
   message: String!
   success: Boolean!
+}
+
+type ChangeList {
+  title: String!
+  makingTime: String!
 }

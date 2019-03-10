@@ -1,4 +1,4 @@
-import { makingContentModel } from "../db/models";
+import { makingContentModel, makingChangeDocumentModel } from "../db/models";
 
 export const getContent = async ({ contentName }) => {
   const result = await bringContentFromDB(contentName);
@@ -67,16 +67,44 @@ export const saveContent = async ({
   summary
 }) => {
   let contentModel = makingContentModel({ title: contentName });
-  console.log(summary);
+  let currentlyListModel = makingChangeDocumentModel();
+  const nowTime = getNowTime();
+
+  if (await existAtCurrentlyChange(currentlyListModel, contentName)) {
+    console.log(contentName);
+    await currentlyListModel.remove({ title: contentName });
+  }
+
+  const currentlyModel = new currentlyListModel({
+    title: contentName,
+    makingTime: nowTime
+  });
+
   const content = new contentModel({
     title: contentName,
     content: markdown,
     hashTag,
     summary,
-    makingTime: getNowTime()
+    makingTime: nowTime
   });
-  content.save();
+  await currentlyModel.save();
+  await content.save();
   return true;
+};
+
+export const getCurrentlyChangeDocument = async () => {
+  console.log("hihi");
+  let currentlyListModel = makingChangeDocumentModel();
+  const result = await currentlyListModel.find({});
+  console.log(result.reverse());
+  return result.slice(0, 10);
+};
+
+const existAtCurrentlyChange = async (currentlyListModel, title) => {
+  const findResult = await currentlyListModel.find({ title });
+  console.log(findResult);
+  if (findResult.length > 0) return true;
+  else return false;
 };
 
 const isAppendZero = value => {

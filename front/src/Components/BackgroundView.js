@@ -1,60 +1,57 @@
-import React, { useQuery, Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import { useQuery } from "react-apollo-hooks";
 import styled from "styled-components";
 import gql from "graphql-tag";
 import HorizonTag from "./HorizonTag";
 
 const CURRENTLY_CHANGE_DOCUMENT = gql`
   query getCurrentlyChangeDocument {
-    getCurrentlyChangeDocument
+    getCurrentlyChangeDocument {
+      title
+      makingTime
+    }
   }
 `;
 
-const changeDocumentList = [
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" },
-  { title: "hi", makingTime: "19:20" }
-];
-
 const BackgroundView = ({ CenterSection, isEdit, contentName, data }) => {
-  return (
-    <Container id="mainBox">
-      <LeftBox id="leftBox" />
-      <CenterBox id="centerBox">
-        <CenterSection isEdit={isEdit} contentName={contentName} data={data} />
-      </CenterBox>
-      <RightBox id="rightBox">
-        <CurrentlyChange>
-          <CurrentlyChangeTitle>최근 수정된 글 목록</CurrentlyChangeTitle>
-          <hr />
-          {changeDocumentList.map(item => (
-            <Fragment>
-              <CurrentlyChangeItem
-                href={`http://localhost:3000/contents/${item.title}`}
-              >
-                <h3>{item.title}</h3> <h3>{item.makingTime} </h3>
-              </CurrentlyChangeItem>
-              <HorizonTag marginBottom="0" marginTop="0" />
-            </Fragment>
-          ))}
-        </CurrentlyChange>
-      </RightBox>
-      <div />
-      <Box />
-      <div />
-    </Container>
-  );
+  const documentList = useQuery(CURRENTLY_CHANGE_DOCUMENT, {
+    pollInterval: 20000
+  });
+
+  if (documentList.loading) return "loading!";
+  else {
+    return (
+      <Container id="mainBox">
+        <LeftBox id="leftBox" />
+        <CenterBox id="centerBox">
+          <CenterSection
+            isEdit={isEdit}
+            contentName={contentName}
+            data={data}
+          />
+        </CenterBox>
+        <RightBox id="rightBox">
+          <CurrentlyChange>
+            <CurrentlyChangeTitle>최근 수정된 글 목록</CurrentlyChangeTitle>
+            <hr />
+            {documentList.data.getCurrentlyChangeDocument.map((item, i) => (
+              <Fragment key={i}>
+                <CurrentlyChangeItem
+                  href={`http://localhost:3000/contents/${item.title}`}
+                >
+                  <h3>{item.title}</h3> <h3>{item.makingTime} </h3>
+                </CurrentlyChangeItem>
+                <HorizonTag marginBottom="0" marginTop="0" />
+              </Fragment>
+            ))}
+          </CurrentlyChange>
+        </RightBox>
+        <div />
+        <Box />
+        <div />
+      </Container>
+    );
+  }
 };
 
 export default BackgroundView;

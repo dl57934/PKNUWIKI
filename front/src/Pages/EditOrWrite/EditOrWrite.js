@@ -15,6 +15,7 @@ const EditOrWrite = ({
     const { loading, data } = useQuery(EDIT_PAGE, {
       variables: { contentName }
     });
+
     if (loading) return "로딩중!!";
     else return editStrategy(data, contentName, edit);
   } else return writeStrategy(contentName, edit);

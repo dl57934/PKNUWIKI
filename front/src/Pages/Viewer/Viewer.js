@@ -10,15 +10,14 @@ const NOT_EXIST_PAGE = "";
 
 const Viewer = ({
   match: {
-    params: { contentName },
-    params
+    params: { contentName, ver }
   }
 }) => {
-  const IS_HISTORY_PAGE = params.ver;
+  const IS_HISTORY_PAGE = ver;
 
   if (IS_HISTORY_PAGE) {
     QUERY = HISTORY_QUERY;
-    variables = { contentName, makingTime: params.ver };
+    variables = { contentName, makingTime: ver };
   } else {
     QUERY = VIEWER_QUERY;
     variables = { contentName };
@@ -30,7 +29,7 @@ const Viewer = ({
 
   if (loading) return "loading";
   else if (IS_HISTORY_PAGE) {
-    data.getHistory["ver"] = params.ver;
+    data.getHistory["ver"] = ver;
     return (
       <BackgroundView CenterSection={CenterSection} data={data.getHistory} />
     );

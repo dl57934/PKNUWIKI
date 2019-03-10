@@ -8,7 +8,7 @@ export const ContentSchema = mongoose.Schema({
   makingTime: { type: String }
 });
 
-export const CurrentlyDocument = mongoose.Schema({
+export const CurrentlyDocumentSchema = mongoose.Schema({
   title: { type: String },
   makingTime: { type: String }
 });

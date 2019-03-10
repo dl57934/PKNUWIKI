@@ -2,7 +2,8 @@ import { searchResult } from "./db/calculate";
 import {
   getContent,
   getHistory,
-  saveContent
+  saveContent,
+  getCurrentlyChangeDocument
 } from "./Documents/EditAndWriteCalculate";
 import signIn from "./auth/signIn";
 import signUp from "./auth/signUp";
@@ -14,7 +15,7 @@ const resolvers = {
     getContent: (_, { contentName }) => getContent({ contentName }),
     getHistory: (_, { contentName, makingTime }) =>
       getHistory(contentName, makingTime),
-    getCurrentlyChangeDocument: () => ["res"]
+    getCurrentlyChangeDocument: () => getCurrentlyChangeDocument()
   },
   Mutation: {
     saveContent: (_, { contentName, markdown, hashTag, summary }) =>
