@@ -15,11 +15,13 @@ export const EDIT_WRITE_PAGE = gql`
     $contentName: String!
     $markdown: String!
     $hashTag: [String!]
+    $summary: String!
   ) {
     saveContent(
       contentName: $contentName
       markdown: $markdown
       hashTag: $hashTag
+      summary: $summary
     )
   }
 `;

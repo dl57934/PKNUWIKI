@@ -1,4 +1,4 @@
-import makingContentModel from "./models";
+import { makingContentModel } from "../db/models";
 
 export const getContent = async ({ contentName }) => {
   const result = await bringContentFromDB(contentName);
@@ -10,7 +10,8 @@ export const getContent = async ({ contentName }) => {
       currentContent.title,
       currentContent.content,
       currentContent.hashTag,
-      editTimeArray
+      editTimeArray,
+      currentContent.summary
     );
   else return getContentReturn();
 };
@@ -21,22 +22,24 @@ export const getHistory = async (contentName, makingTime) => {
   }).find({ makingTime });
 
   const editTimeArray = getEditTimeArray(contentName);
-  const { title, content, hashTag } = result[0];
+  const { title, content, hashTag, summary } = result[0];
 
-  return getContentReturn(title, content, hashTag, editTimeArray);
+  return getContentReturn(title, content, hashTag, editTimeArray, summary);
 };
 
 const getContentReturn = (
   title = "",
   markdown = "",
   hashTag = [""],
-  makingTime = [""]
+  makingTime = [""],
+  summary = ""
 ) => {
   return {
     title,
     markdown,
     hashTag,
-    makingTime
+    makingTime,
+    summary
   };
 };
 
@@ -57,14 +60,19 @@ const getNowTime = () => {
   )}:${isAppendZero(now.getMinutes())}:${isAppendZero(now.getSeconds())}`;
 };
 
-export const saveContent = async ({ contentName, markdown, hashTag }) => {
+export const saveContent = async ({
+  contentName,
+  markdown,
+  hashTag,
+  summary
+}) => {
   let contentModel = makingContentModel({ title: contentName });
-
+  console.log(summary);
   const content = new contentModel({
     title: contentName,
     content: markdown,
     hashTag,
-    summary: "hihi",
+    summary,
     makingTime: getNowTime()
   });
   content.save();

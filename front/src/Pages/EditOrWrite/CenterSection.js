@@ -9,33 +9,21 @@ import { useMutation } from "react-apollo-hooks";
 import { BasicButtonCss } from "Components/CssCollection";
 import { EDIT_WRITE_PAGE } from "./query";
 
-const useTextContents = () => {
-  const [value, setValue] = useState("");
-
-  const onChange = e => {
-    const {
-      target: { value }
-    } = e;
-    setValue(value);
-  };
-
-  return { value, onChange, setValue };
-};
-
 const CenterSection = ({ contentName, isEdit, data }) => {
   const [writeStatus, setStatus] = useState(true);
-  const textarea = useTextContents();
+  const textarea = useInputTag("");
   const hashTagState = useInputTag("");
-
+  const summaryState = useInputTag("");
   if (isEdit) {
     console.log(data);
     const {
-      getContent: { markdown, hashTag }
+      getContent: { markdown, hashTag, summary }
     } = data;
 
     useEffect(() => {
       textarea.setValue(markdown);
       hashTagState.setValue(hashTag.join(" "));
+      summaryState.setValue(summary);
     }, [data]);
   }
 
@@ -44,14 +32,14 @@ const CenterSection = ({ contentName, isEdit, data }) => {
       const {
         data: { saveContent }
       } = mutationResult;
-      console.log(saveContent);
       if (saveContent)
         window.location.href = `http://localhost:3000/contents/${contentName}`;
     },
     variables: {
       contentName,
       markdown: textarea.value,
-      hashTag: hashTagState.value.split(" ")
+      hashTag: hashTagState.value.split(" "),
+      summary: summaryState.value
     }
   });
 
@@ -86,7 +74,11 @@ const CenterSection = ({ contentName, isEdit, data }) => {
           </PreviewZone>
         )}
       </CenterBox>
-      <Title text={"해쉬 태그 설정"} />
+      <Title text={"요약"} />
+      <BottomBox>
+        <HashTagInput {...summaryState} />
+      </BottomBox>
+      <HashTagTitle>해쉬 태그 설정</HashTagTitle>
       <BottomBox>
         <HashTagInput {...hashTagState} />
       </BottomBox>
@@ -159,4 +151,10 @@ const SaveButton = styled.button`
   background-color: rgb(206, 61, 62);
   color: white;
   ${BasicButtonCss}
+`;
+
+const HashTagTitle = styled.h4`
+  color: rgb(109, 109, 109);
+  margin-left: 5%;
+  margin-top: 5%;
 `;

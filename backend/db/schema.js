@@ -7,3 +7,8 @@ export const ContentSchema = mongoose.Schema({
   hashTag: { type: [String] },
   makingTime: { type: String }
 });
+
+export const CurrentlyDocument = mongoose.Schema({
+  title: { type: String },
+  makingTime: { type: String }
+});

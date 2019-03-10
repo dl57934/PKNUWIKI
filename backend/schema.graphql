@@ -3,6 +3,7 @@ type Query {
   searchResult(contentsName: String!): SearchContent!
   getContent(contentName: String!): Content!
   getHistory(contentName: String!, makingTime: String!): Content!
+  getCurrentlyChangeDocument: [String]!
 }
 
 type Mutation {
@@ -10,6 +11,7 @@ type Mutation {
     contentName: String!
     markdown: String!
     hashTag: [String]
+    summary: String
   ): Boolean!
   signIn(email: String!, password: String!): SignResult!
   signUp(name: String!, email: String!, password: String!): SignResult!
@@ -25,6 +27,7 @@ type Content {
   markdown: String!
   hashTag: [String]!
   makingTime: [String]!
+  summary: String!
 }
 
 type SignResult {

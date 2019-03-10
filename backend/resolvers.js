@@ -1,10 +1,9 @@
-import makingContentModel from "./db/models";
 import { searchResult } from "./db/calculate";
 import {
   getContent,
   getHistory,
   saveContent
-} from "./db/EditAndWriteCalculate";
+} from "./Documents/EditAndWriteCalculate";
 import signIn from "./auth/signIn";
 import signUp from "./auth/signUp";
 
@@ -14,11 +13,12 @@ const resolvers = {
     searchResult: (_, { contentsName }) => searchResult({ contentsName }),
     getContent: (_, { contentName }) => getContent({ contentName }),
     getHistory: (_, { contentName, makingTime }) =>
-      getHistory(contentName, makingTime)
+      getHistory(contentName, makingTime),
+    getCurrentlyChangeDocument: () => ["res"]
   },
   Mutation: {
-    saveContent: (_, { contentName, markdown, hashTag }) =>
-      saveContent({ contentName, markdown, hashTag }),
+    saveContent: (_, { contentName, markdown, hashTag, summary }) =>
+      saveContent({ contentName, markdown, hashTag, summary }),
     signIn: (_, { email, password }) => signIn({ email, password }),
     signUp: (_, { email, password, name }) => signUp({ email, password, name })
   }
