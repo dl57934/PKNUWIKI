@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import { useQuery } from "react-apollo-hooks";
 import styled from "styled-components";
 import gql from "graphql-tag";
@@ -39,7 +39,8 @@ const BackgroundView = ({ CenterSection, isEdit, contentName, data }) => {
                 <CurrentlyChangeItem
                   href={`http://localhost:3000/contents/${item.title}`}
                 >
-                  <h3>{item.title}</h3> <h3>{item.makingTime} </h3>
+                  <h3>{item.title}</h3>{" "}
+                  <h3>{item.makingTime.split(" ")[1]} </h3>
                 </CurrentlyChangeItem>
                 <HorizonTag marginBottom="0" marginTop="0" />
               </Fragment>
@@ -73,6 +74,7 @@ const Container = styled.div`
     #rightBox {
       width: 0;
       background-color: white;
+      margin-right: 0;
     }
   }
 `;
@@ -86,7 +88,9 @@ const LeftBox = styled.div``;
 const CenterBox = styled.div`
   background-color: white;
 `;
-const RightBox = styled.div``;
+const RightBox = styled.div`
+  margin-right: 50px;
+`;
 
 const CurrentlyChange = styled.div`
   background-color: white;
