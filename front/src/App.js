@@ -11,6 +11,7 @@ import SingUp from "Pages/SignUp";
 import Viewer from "Pages/Viewer";
 import EditOrWrite from "Pages/EditOrWrite";
 import Bottom from "./Components/Bottom";
+import EmailCheck from "Pages/EmailCheck";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
               <Route path={"/contents/:contentName"} component={Viewer} />
               <Route path={"/edit/:contentName"} component={EditOrWrite} />
               <Route path={"/write/:contentName"} component={EditOrWrite} />
+              <Route path={"/emailCheck/:token"} component={EmailCheck} />
             </Switch>
           </BrowserRouter>
         </ApolloHooksProvider>

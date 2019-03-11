@@ -5,7 +5,7 @@ const signUp = async ({ email, name, password }) => {
   if (await isDuplicatedAccount(email))
     return { success: false, message: "중복되는 아이디가 존재합니다." };
   else {
-    const token = await crypto.randomBytes(64).toString("base64");
+    const token = await getToken();
     await saveAccount({ email, password, name, token });
     await sendEmail(email, token);
     return {
@@ -13,6 +13,14 @@ const signUp = async ({ email, name, password }) => {
       success: true
     };
   }
+};
+
+const getToken = async () => {
+  const token = await crypto
+    .randomBytes(64)
+    .toString("base64")
+    .split("/")[0];
+  return token;
 };
 
 const isDuplicatedAccount = async email => {

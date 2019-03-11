@@ -4,6 +4,7 @@ type Query {
   getContent(contentName: String!): Content!
   getHistory(contentName: String!, makingTime: String!): Content!
   getCurrentlyChangeDocument: [ChangeList]!
+  emailCheck(token: String!): SignResult!
 }
 
 type Mutation {

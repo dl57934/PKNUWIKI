@@ -7,6 +7,7 @@ import {
 } from "./Documents/EditAndWriteCalculate";
 import signIn from "./auth/signIn";
 import signUp from "./auth/signUp";
+import emailCheck from "./auth/emailCheck";
 
 const resolvers = {
   Query: {
@@ -15,7 +16,8 @@ const resolvers = {
     getContent: (_, { contentName }) => getContent({ contentName }),
     getHistory: (_, { contentName, makingTime }) =>
       getHistory(contentName, makingTime),
-    getCurrentlyChangeDocument: () => getCurrentlyChangeDocument()
+    getCurrentlyChangeDocument: () => getCurrentlyChangeDocument(),
+    emailCheck: (_, { token }) => emailCheck({ token })
   },
   Mutation: {
     saveContent: (_, { contentName, markdown, hashTag, summary }) =>
