@@ -22,7 +22,13 @@ const CenterSection = () => {
 
   const signUp = useMutation(SIGN_UP_PAGE, {
     update: (proxy, mutationResult) => {
-      console.log(mutationResult);
+      const {
+        data: {
+          signUp: { message, success }
+        }
+      } = mutationResult;
+      alert(message);
+      if (success) window.location.href = `http://localhost:3000/부경위키:대문`;
     },
     variables: {
       name: name.value,
