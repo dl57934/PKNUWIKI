@@ -93,11 +93,9 @@ export const saveContent = async ({
 };
 
 export const getCurrentlyChangeDocument = async () => {
-  console.log("hihi");
   let currentlyListModel = makingChangeDocumentModel();
   const result = await currentlyListModel.find({});
-  console.log(result.reverse());
-  return result.slice(0, 10);
+  return result.reverse().slice(0, 10);
 };
 
 const existAtCurrentlyChange = async (currentlyListModel, title) => {

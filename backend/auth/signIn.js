@@ -1,7 +1,8 @@
 import { mariaDB } from "../db/connectDB";
+import crypto from "crypto";
 
 const signIn = async ({ email, password }) => {
-  if (await isExistUser({ email, password })) {
+  if (await isExistUser({ email, password: hashingWith(password) })) {
     return signResultReturn({
       success: true,
       message: "로그인을 성공하였습니다"
@@ -13,6 +14,8 @@ const signIn = async ({ email, password }) => {
     });
   }
 };
+
+const hashingWithSalt = ({ password }) => {};
 
 export default signIn;
 

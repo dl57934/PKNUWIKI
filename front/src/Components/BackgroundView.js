@@ -18,7 +18,12 @@ const BackgroundView = ({ CenterSection, isEdit, contentName, data }) => {
     pollInterval: 20000
   });
 
-  if (documentList.loading) return "loading!";
+  const {
+    loading,
+    data: { getCurrentlyChangeDocument }
+  } = documentList;
+
+  if (loading) return "loading";
   else {
     return (
       <Container id="mainBox">
@@ -34,7 +39,7 @@ const BackgroundView = ({ CenterSection, isEdit, contentName, data }) => {
           <CurrentlyChange>
             <CurrentlyChangeTitle>최근 수정된 글 목록</CurrentlyChangeTitle>
             <hr />
-            {documentList.data.getCurrentlyChangeDocument.map((item, i) => (
+            {getCurrentlyChangeDocument.map((item, i) => (
               <Fragment key={i}>
                 <CurrentlyChangeItem
                   href={`http://localhost:3000/contents/${item.title}`}
@@ -61,7 +66,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 3fr 1fr;
   height: auto !important;
-  @media all and (max-width: 1000px) {
+  @media all and (max-width: 1300px) {
     display: flex;
     transition-duration: 1s;
     #leftBox {

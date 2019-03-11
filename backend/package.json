@@ -11,6 +11,7 @@
     "start": "nodemon --exec babel-node index.js"
   },
   "dependencies": {
+    "crypto": "^1.0.1",
     "graphql-yoga": "^1.17.4",
     "mongoose": "^5.4.17",
     "mysql": "^2.16.0",

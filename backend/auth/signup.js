@@ -1,6 +1,6 @@
 import { mariaDB } from "../db/connectDB";
 import { createTransport } from "nodemailer";
-
+import crypto from "crypto";
 const signUp = async ({ email, name, password }) => {
   if (await isDuplicatedAccount(email))
     return { success: false, message: "중복되는 아이디가 존재합니다." };
@@ -19,13 +19,18 @@ const isDuplicatedAccount = async email => {
   const DUPLICATED_ID = 1;
 
   const [rows, tables] = await mariaDB.query(SEARCH_DUPLICATED_ID_SQL);
-  console.log(rows);
   if (rows.length === DUPLICATED_ID) return true;
   else return false;
 };
 
 const saveAccount = async ({ email, password, name }) => {
-  const SAVE_ACCOUNT_SQL = `INSERT INTO pknu_wiki_member (email, name, password, token, emailcheck) values('${email}', '${name}', '${password}', '0','0');`;
+  const salt = await crypto.randomBytes(64).toString("base64");
+
+  const encryptionPassword = crypto
+    .pbkdf2Sync(password, salt.toString("base64"), 100000, 64, "sha512")
+    .toString("base64");
+
+  const SAVE_ACCOUNT_SQL = `INSERT INTO pknu_wiki_member (email, name, password, token, emailcheck, salt) values('${email}', '${name}', '${encryptionPassword}', '0','0', '${salt}');`;
   const [rows, tables] = await mariaDB.query(SAVE_ACCOUNT_SQL);
 };
 
