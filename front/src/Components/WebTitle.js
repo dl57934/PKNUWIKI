@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { MainColor } from "Components/CssCollection";
 
 const WebTitle = () => {
   return (
     <Description id="description">
       부경대학교 학우들이 써내려가는 <br />
-      <Name color="skyblue">PKNU WIKI</Name>
+      <Name color={MainColor}>PKNU WIKI</Name>
     </Description>
   );
 };

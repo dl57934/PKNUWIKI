@@ -6,6 +6,7 @@ import WebTitle from "Components/WebTitle";
 import BasicButton from "Components/BasicButton";
 import { Link } from "react-router-dom";
 import { useMutation } from "react-apollo-hooks";
+import { issueJWT } from "Hooks/ManageJWT";
 import LOGIN_PAGE from "./query";
 
 const CenterSection = () => {
@@ -14,10 +15,10 @@ const CenterSection = () => {
 
   const sendLogin = useMutation(LOGIN_PAGE, {
     update: (proxy, mutationResult) => {
-      const { success, message } = mutationResult.data.signIn;
-
+      const { success, message, jwt } = mutationResult.data.signIn;
       if (success) {
         alert(message);
+        issueJWT(jwt);
         window.location.href = `http://localhost:3000/부경위키:대문`;
       } else alert(message);
     },

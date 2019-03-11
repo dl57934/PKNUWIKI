@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bluebird": "^3.5.3",
+    "jsonwebtoken": "^8.5.0",
     "mysql2": "^1.6.5",
     "nodemailer": "^5.1.1",
     "react-hot-loader": "^4.8.0"

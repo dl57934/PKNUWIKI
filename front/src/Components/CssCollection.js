@@ -7,3 +7,5 @@ export const BasicButtonCss = css`
   font-weight: 600;
   font-size: 15px;
 `;
+
+export const MainColor = "rgb(94, 205, 255)";

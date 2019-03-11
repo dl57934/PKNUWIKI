@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import useInputTag from "Hooks/inputTag";
+import { MainColor } from "Components/CssCollection";
 
 const SearchDocument = e => {
   const {
@@ -13,6 +14,7 @@ const SearchDocument = e => {
 
 const Header = props => {
   const search = useInputTag("");
+  const jwt = localStorage.getItem("jwt");
   return (
     <Container>
       <HomeLink id="ToHome" href={"/부경위키:대문"} width={document.width}>
@@ -25,7 +27,13 @@ const Header = props => {
         type="text"
         onKeyUp={SearchDocument}
       />
-      <LoginText id="login">로그인</LoginText>
+      <LoginText
+        id="login"
+        href={jwt ? "" : "/signIn"}
+        onClick={jwt ? () => localStorage.removeItem("jwt") : ""}
+      >
+        {jwt ? "로그아웃" : "로그인"}
+      </LoginText>
     </Container>
   );
 };
@@ -34,7 +42,7 @@ export default Header;
 
 const Container = styled.div`
   display: flex;
-  background-color: skyblue;
+  background-color: ${MainColor};
   align-items: center;
   justify-content: space-around;
   height: 80px;
@@ -108,9 +116,7 @@ const SearchInput = styled.input.attrs({
   margin-left: -10%;
 `;
 
-const LoginText = styled.a.attrs({
-  href: "/signIn"
-})`
+const LoginText = styled.a`
   color: white;
   font-weight: 700;
   text-decoration: none;

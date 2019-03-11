@@ -3,6 +3,7 @@ import BackgroundView from "Components/BackgroundView";
 import CenterSection from "./CenterSection";
 import { EDIT_PAGE } from "./query";
 import { useQuery } from "react-apollo-hooks";
+import { CHECK_VERIFY_JWT, initialJWT } from "Hooks/ManageJWT";
 
 const EditOrWrite = ({
   match: {
@@ -11,14 +12,26 @@ const EditOrWrite = ({
   }
 }) => {
   const edit = isEdit(url);
+
   if (edit) {
     const { loading, data } = useQuery(EDIT_PAGE, {
-      variables: { contentName }
+      variables: { contentName, jwt: localStorage.getItem("jwt") }
     });
 
-    if (loading) return "로딩중!!";
-    else return editStrategy(data, contentName, edit);
-  } else return writeStrategy(contentName, edit);
+    return QueryExecute(loading, data, editStrategy(data, contentName, edit));
+  } else {
+    const { loading, data } = useQuery(CHECK_VERIFY_JWT, {
+      variables: { jwt: localStorage.getItem("jwt") }
+    });
+
+    return QueryExecute(loading, data, writeStrategy(contentName, edit));
+  }
+};
+
+const QueryExecute = (loading, data, strategy) => {
+  if (loading) return "로딩중!!";
+  else if (!data.isValidationJwt) return initialJWT();
+  else return strategy;
 };
 
 const isEdit = url => {

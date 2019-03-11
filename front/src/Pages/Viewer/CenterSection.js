@@ -5,9 +5,9 @@ import BasicButton from "Components/BasicButton";
 import HorizonTag from "Components/HorizonTag";
 import options from "Components/MarkdownOptions";
 import { Link } from "react-router-dom";
+import { MainColor } from "Components/CssCollection";
 
 const CenterSection = ({ data: { title, markdown, makingTime, ver } }) => {
-  console.log(ver);
   return (
     <Fragment>
       <CenterContainer
@@ -27,7 +27,7 @@ const CenterContainer = ({ markdown, title, ver }) => (
       <ContentName> {title}</ContentName>
       <EditButton>
         <Link to={`/edit/${title}`}>
-          <BasicButton text={"수정하기"} color={"skyblue"} />
+          <BasicButton text={"수정하기"} color={MainColor} />
         </Link>
         <CurrentEditText>최근 수정일: {ver}</CurrentEditText>
       </EditButton>
@@ -150,7 +150,7 @@ const HistoryButton = styled.button`
   height: 50px;
   width: 40px;
   font-weight: bold;
-  color: skyblue;
+  color: ${MainColor};
   border-radius: 5%;
   font-size: 30px;
 `;

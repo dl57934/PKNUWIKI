@@ -1,7 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import styled from "styled-components";
 import Title from "Components/Title";
-import BasicButton from "Components/BasicButton";
 import MarkDownRender from "react-markdown-renderer";
 import options from "Components/MarkdownOptions";
 import useInputTag from "Hooks/inputTag";
@@ -48,8 +47,6 @@ const CenterSection = ({ contentName, isEdit, data }) => {
       <UpBox>
         <Title text={contentName} />
         <ButtonBox>
-          {isEdit ? <BasicButton text={"역사"} /> : ""}
-
           <SaveButton onClick={saveContent}>저장</SaveButton>
         </ButtonBox>
       </UpBox>

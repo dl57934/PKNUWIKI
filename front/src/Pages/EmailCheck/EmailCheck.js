@@ -1,4 +1,3 @@
-import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "react-apollo-hooks";
 import { SIGN_FRAGMENT } from "Components/fragment";
@@ -27,7 +26,6 @@ const EmailCheck = ({
     if (success) return (window.location.href = "http://localhost:3000/signIn");
     else return (window.location.href = "http://localhost:3000/sugnUp");
   }
-  return <div />;
 };
 
 export default EmailCheck;

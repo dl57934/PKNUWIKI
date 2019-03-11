@@ -2,10 +2,11 @@ import gql from "graphql-tag";
 import { CONTENT_FRAGMENT } from "Components/fragment";
 
 export const EDIT_PAGE = gql`
-  query getContent($contentName: String!) {
+  query getContent($contentName: String!, $jwt: String!) {
     getContent(contentName: $contentName) {
       ...ContentParts
     }
+    isValidationJwt(jwt: $jwt)
   }
   ${CONTENT_FRAGMENT}
 `;

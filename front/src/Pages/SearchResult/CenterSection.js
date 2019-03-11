@@ -9,7 +9,6 @@ const CenterSection = ({
     searchResult: { title, explanation }
   }
 }) => {
-  title.push("react-native");
   explanation.push(
     "react와 비슷하게 react-native에 적용할 수 있는 앱개발 프레임워크"
   );
@@ -54,6 +53,7 @@ export default CenterSection;
 const SummaryBox = styled.div`
   display: flex;
   flex-direction: column;
+  height: 1000px;
 `;
 
 const SummaryItems = styled.a`

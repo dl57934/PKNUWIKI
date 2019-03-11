@@ -64,6 +64,7 @@ const CenterSection = () => {
       <InputBox>
         <Preface>이름</Preface>
         <LoginInput placeholder="이름을 입력해주세요." type="text" {...name} />
+        <IdSummary>실명이 아닌 경우 제재가 있을 수 있습니다.</IdSummary>
         <Preface>아이디</Preface>
         <LoginInput placeholder="id를 입력해주세요." type="email" {...email} />
         <IdSummary>@pukyong.ac.kr만 회원가입이 가능합니다.</IdSummary>

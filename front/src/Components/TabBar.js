@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import styled, { css } from "styled-components";
 import HorizonTag from "./HorizonTag";
 import SkyBlueImg from "./SkyBlueImg";
+import { MainColor } from "./CssCollection";
 
 const LAST_TAB_BAR = 2;
 
@@ -69,7 +70,7 @@ const LeftSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: skyblue;
+  background-color: ${MainColor};
 `;
 
 const RightSection = styled.div`
@@ -79,9 +80,9 @@ const RightSection = styled.div`
   background-color: white;
   ${props =>
     props.index === 0
-      ? "border-top:2px solid skyblue"
+      ? `border-top:2px solid ${MainColor}`
       : props.index === 2
-      ? "border-bottom:2px solid skyblue"
+      ? `border-bottom:2px solid ${MainColor}`
       : 0};
-  border-right: 2px solid skyblue;
+  border-right: 2px solid ${MainColor};
 `;

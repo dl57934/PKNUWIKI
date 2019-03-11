@@ -4,7 +4,8 @@ type Query {
   getContent(contentName: String!): Content!
   getHistory(contentName: String!, makingTime: String!): Content!
   getCurrentlyChangeDocument: [ChangeList]!
-  emailCheck(token: String!): SignResult!
+  emailCheck(token: String!): SignUpResult!
+  isValidationJwt(jwt: String!): Boolean!
 }
 
 type Mutation {
@@ -14,8 +15,8 @@ type Mutation {
     hashTag: [String]
     summary: String
   ): Boolean!
-  signIn(email: String!, password: String!): SignResult!
-  signUp(name: String!, email: String!, password: String!): SignResult!
+  signIn(email: String!, password: String!): SignInResult!
+  signUp(name: String!, email: String!, password: String!): SignUpResult!
 }
 
 type SearchContent {
@@ -31,9 +32,15 @@ type Content {
   summary: String!
 }
 
-type SignResult {
+type SignUpResult {
   message: String!
   success: Boolean!
+}
+
+type SignInResult {
+  message: String!
+  success: Boolean!
+  jwt: String!
 }
 
 type ChangeList {

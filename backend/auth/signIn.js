@@ -1,16 +1,27 @@
 import { mariaDB } from "../db/connectDB";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
 
 const signIn = async ({ email, password }) => {
   if (await isExistUser({ email, rawPassword: password })) {
+    const token = jwt.sign(
+      {
+        exp: Math.floor(Date.now() / 1000) + 60 * 60,
+        signIn: true
+      },
+      "secret"
+    );
+
     return signResultReturn({
       success: true,
-      message: "로그인을 성공하였습니다"
+      message: "로그인을 성공하였습니다",
+      jwt: token
     });
   } else {
     return signResultReturn({
       success: false,
-      message: "아이디 혹은 비밀번호를 확인해주세요!!"
+      message: "아이디 혹은 비밀번호를 확인해주세요!!",
+      jwt: ""
     });
   }
 };
@@ -31,15 +42,14 @@ const isExistUser = async ({ email, rawPassword }) => {
 
 const wrongPasswordOrEmailCheck = async (rows, rawPassword) => {
   const { password, emailcheck, salt } = rows;
-
   return (
-    isCorrectPassword({ rawPassword, password, salt }) ||
+    (await isCorrectPassword({ rawPassword, password, salt })) ||
     emailcheck === DONT_EMAIL_CHECK
   );
 };
 
-const signResultReturn = ({ success, message }) => {
-  return { success, message };
+const signResultReturn = ({ success, message, jwt }) => {
+  return { success, message, jwt };
 };
 
 const isCorrectPassword = async ({ rawPassword, password, salt }) => {

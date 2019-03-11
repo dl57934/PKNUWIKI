@@ -8,6 +8,7 @@ import {
 import signIn from "./auth/signIn";
 import signUp from "./auth/signUp";
 import emailCheck from "./auth/emailCheck";
+import jwtValidationCheck from "./auth/jwtValidationCheck";
 
 const resolvers = {
   Query: {
@@ -17,7 +18,8 @@ const resolvers = {
     getHistory: (_, { contentName, makingTime }) =>
       getHistory(contentName, makingTime),
     getCurrentlyChangeDocument: () => getCurrentlyChangeDocument(),
-    emailCheck: (_, { token }) => emailCheck({ token })
+    emailCheck: (_, { token }) => emailCheck({ token }),
+    isValidationJwt: (_, { jwt }) => jwtValidationCheck({ jsonWebToken: jwt })
   },
   Mutation: {
     saveContent: (_, { contentName, markdown, hashTag, summary }) =>
