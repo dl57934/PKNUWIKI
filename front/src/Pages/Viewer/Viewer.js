@@ -29,6 +29,7 @@ const Viewer = ({
 
   if (loading) return "loading";
   else if (IS_HISTORY_PAGE) {
+    console.log(data);
     data.getHistory["ver"] = ver;
     return (
       <BackgroundView CenterSection={CenterSection} data={data.getHistory} />

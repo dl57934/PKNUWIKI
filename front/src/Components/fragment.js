@@ -7,6 +7,7 @@ export const CONTENT_FRAGMENT = gql`
     hashTag
     makingTime
     summary
+    writer
   }
 `;
 

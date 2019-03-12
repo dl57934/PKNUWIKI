@@ -3,6 +3,7 @@ import { makingContentModel, makingChangeDocumentModel } from "../db/models";
 export const getContent = async ({ contentName }) => {
   const result = await bringContentFromDB(contentName);
   const editTimeArray = getEditTimeArray(contentName);
+  const writerArray = getWriterArray(contentName);
   const currentContent = result[result.length - 1];
 
   if (currentContent)
@@ -11,7 +12,8 @@ export const getContent = async ({ contentName }) => {
       currentContent.content,
       currentContent.hashTag,
       editTimeArray,
-      currentContent.summary
+      currentContent.summary,
+      writerArray
     );
   else return getContentReturn();
 };
@@ -22,9 +24,17 @@ export const getHistory = async (contentName, makingTime) => {
   }).find({ makingTime });
 
   const editTimeArray = getEditTimeArray(contentName);
+  const writerArray = getWriterArray(contentName);
   const { title, content, hashTag, summary } = result[0];
 
-  return getContentReturn(title, content, hashTag, editTimeArray, summary);
+  return getContentReturn(
+    title,
+    content,
+    hashTag,
+    editTimeArray,
+    summary,
+    writerArray
+  );
 };
 
 const getContentReturn = (
@@ -32,15 +42,25 @@ const getContentReturn = (
   markdown = "",
   hashTag = [""],
   makingTime = [""],
-  summary = ""
+  summary = "",
+  writer = [""]
 ) => {
   return {
     title,
     markdown,
     hashTag,
     makingTime,
-    summary
+    summary,
+    writer
   };
+};
+
+const getWriterArray = async contentName => {
+  const writers = await bringOnlyWriter(contentName);
+
+  let writerArray = new Array();
+  writers.map(data => writerArray.push(data.writer));
+  return writerArray;
 };
 
 const getEditTimeArray = async contentName => {
@@ -121,4 +141,11 @@ const bringOnlyEditTime = async contentName => {
     title: contentName
   }).find({}, { makingTime: true, _id: false });
   return makingTime;
+};
+
+const bringOnlyWriter = async contentName => {
+  const writer = await makingContentModel({
+    title: contentName
+  }).find({}, { writer: true, _id: false });
+  return writer;
 };

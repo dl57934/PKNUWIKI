@@ -7,7 +7,9 @@ import options from "Components/MarkdownOptions";
 import { Link } from "react-router-dom";
 import { MainColor } from "Components/CssCollection";
 
-const CenterSection = ({ data: { title, markdown, makingTime, ver } }) => {
+const CenterSection = ({
+  data: { title, markdown, makingTime, ver, writer }
+}) => {
   return (
     <Fragment>
       <CenterContainer
@@ -16,7 +18,12 @@ const CenterSection = ({ data: { title, markdown, makingTime, ver } }) => {
         makingTime={makingTime}
         ver={ver}
       />
-      <HistoryContainer makingTime={makingTime} title={title} ver={ver} />
+      <HistoryContainer
+        makingTime={makingTime}
+        title={title}
+        ver={ver}
+        writer={writer}
+      />
     </Fragment>
   );
 };
@@ -40,10 +47,10 @@ const CenterContainer = ({ markdown, title, ver }) => (
 
 const FIRST_PAGE = 1;
 
-const HistoryContainer = ({ makingTime, title, ver }) => {
+const HistoryContainer = ({ makingTime, title, ver, writer }) => {
   const LAST_PAGE = Math.ceil(makingTime.length / 5);
   const [nowPage, setNowPage] = useState(1);
-
+  console.log(writer);
   return (
     <HistoryBox>
       <HistoryTitle>수정 내역</HistoryTitle>
@@ -57,9 +64,9 @@ const HistoryContainer = ({ makingTime, title, ver }) => {
           )
           .map((data, i) => (
             <HistoryItem key={i}>
-              Ver: {makingTime.length - i - (nowPage - 1) * 5} 수정 날짜:{" "}
+              Ver: {getVersion(makingTime.length, nowPage, i)} 수정 날짜:{" "}
               {data + " "}
-              작성자: 철수 (
+              작성자: {writer[getVersion(makingTime.length, nowPage, i) - 1]} (
               {data === ver ? (
                 "현재"
               ) : (
@@ -87,6 +94,10 @@ const HistoryContainer = ({ makingTime, title, ver }) => {
       </HistoryButtonBox>
     </HistoryBox>
   );
+};
+
+const getVersion = (verLength, nowPage, i) => {
+  return verLength - i - (nowPage - 1) * 5;
 };
 
 export default CenterSection;

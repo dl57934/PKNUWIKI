@@ -31,6 +31,7 @@ type Content {
   hashTag: [String]!
   makingTime: [String]!
   summary: String!
+  writer: [String]!
 }
 
 type SignUpResult {
