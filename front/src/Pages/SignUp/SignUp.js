@@ -5,9 +5,10 @@ import CenterSection from "./CenterSection";
 import { CHECK_VERIFY_JWT, jwtCheckResult } from "Hooks/ManageJWT";
 
 const SignUp = () => {
-  if (localStorage.getItem("jwt")) {
+  const jwt = localStorage.getItem("jwt");
+  if (jwt) {
     const { data, loading } = useQuery(CHECK_VERIFY_JWT, {
-      variables: { jwt: localStorage.getItem("jwt") }
+      variables: { jwt }
     });
     return jwtCheckResult(loading, data);
   }

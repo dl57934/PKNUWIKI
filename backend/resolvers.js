@@ -22,8 +22,8 @@ const resolvers = {
     isValidationJwt: (_, { jwt }) => jwtValidationCheck({ jsonWebToken: jwt })
   },
   Mutation: {
-    saveContent: (_, { contentName, markdown, hashTag, summary }) =>
-      saveContent({ contentName, markdown, hashTag, summary }),
+    saveContent: (_, { contentName, markdown, hashTag, summary, writer }) =>
+      saveContent({ contentName, markdown, hashTag, summary, writer }),
     signIn: (_, { email, password }) => signIn({ email, password }),
     signUp: (_, { email, password, name }) => signUp({ email, password, name })
   }

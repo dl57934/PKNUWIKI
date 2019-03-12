@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import useInputTag from "Hooks/inputTag";
 import { MainColor } from "Components/CssCollection";
+import { signOut } from "Hooks/ManageJWT";
 
 const SearchDocument = e => {
   const {
@@ -30,7 +31,7 @@ const Header = props => {
       <LoginText
         id="login"
         href={jwt ? "" : "/signIn"}
-        onClick={jwt ? () => localStorage.removeItem("jwt") : ""}
+        onClick={jwt ? () => signOut() : ""}
       >
         {jwt ? "로그아웃" : "로그인"}
       </LoginText>

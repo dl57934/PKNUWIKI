@@ -15,14 +15,16 @@ export const EDIT_WRITE_PAGE = gql`
   mutation saveContent(
     $contentName: String!
     $markdown: String!
-    $hashTag: [String!]
+    $hashTag: [String]!
     $summary: String!
+    $writer: String!
   ) {
     saveContent(
       contentName: $contentName
       markdown: $markdown
       hashTag: $hashTag
       summary: $summary
+      writer: $writer
     )
   }
 `;

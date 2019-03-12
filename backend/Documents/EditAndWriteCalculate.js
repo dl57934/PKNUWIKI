@@ -64,16 +64,15 @@ export const saveContent = async ({
   contentName,
   markdown,
   hashTag,
-  summary
+  summary,
+  writer
 }) => {
   let contentModel = makingContentModel({ title: contentName });
   let currentlyListModel = makingChangeDocumentModel();
   const nowTime = getNowTime();
 
-  if (await existAtCurrentlyChange(currentlyListModel, contentName)) {
-    console.log(contentName);
+  if (await existAtCurrentlyChange(currentlyListModel, contentName))
     await currentlyListModel.remove({ title: contentName });
-  }
 
   const currentlyModel = new currentlyListModel({
     title: contentName,
@@ -85,7 +84,8 @@ export const saveContent = async ({
     content: markdown,
     hashTag,
     summary,
-    makingTime: nowTime
+    makingTime: nowTime,
+    writer
   });
   await currentlyModel.save();
   await content.save();

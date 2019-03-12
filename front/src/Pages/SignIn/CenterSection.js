@@ -18,7 +18,7 @@ const CenterSection = () => {
       const { success, message, jwt } = mutationResult.data.signIn;
       if (success) {
         alert(message);
-        issueJWT(jwt);
+        issueJWT(jwt, email.value);
         window.location.href = `http://localhost:3000/부경위키:대문`;
       } else alert(message);
     },

@@ -12,8 +12,9 @@ type Mutation {
   saveContent(
     contentName: String!
     markdown: String!
-    hashTag: [String]
-    summary: String
+    hashTag: [String]!
+    summary: String!
+    writer: String!
   ): Boolean!
   signIn(email: String!, password: String!): SignInResult!
   signUp(name: String!, email: String!, password: String!): SignUpResult!

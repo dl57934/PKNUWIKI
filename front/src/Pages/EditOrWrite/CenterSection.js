@@ -13,6 +13,7 @@ const CenterSection = ({ contentName, isEdit, data }) => {
   const textarea = useInputTag("");
   const hashTagState = useInputTag("");
   const summaryState = useInputTag("");
+
   if (isEdit) {
     console.log(data);
     const {
@@ -38,7 +39,8 @@ const CenterSection = ({ contentName, isEdit, data }) => {
       contentName,
       markdown: textarea.value,
       hashTag: hashTagState.value.split(" "),
-      summary: summaryState.value
+      summary: summaryState.value,
+      writer: localStorage.getItem("email")
     }
   });
 
