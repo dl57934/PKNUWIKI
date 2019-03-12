@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import LinesEllipsis from "react-lines-ellipsis";
 import Title from "Components/Title";
@@ -6,44 +6,42 @@ import HorizonTag from "Components/HorizonTag";
 
 const CenterSection = ({
   data: {
-    searchResult: { title, explanation }
+    searchResult: { title, explanation },
+    name
   }
 }) => {
-  explanation.push(
-    "react와 비슷하게 react-native에 적용할 수 있는 앱개발 프레임워크"
-  );
+  console.log(title);
   return (
     <SummaryBox>
       <SuggestNewDocumentBox>
         <SuggestNewDocumentText id="suggestText">
           > 찾는 문서가 없나요? 새로 작성해보세요!!
         </SuggestNewDocumentText>
-        <SuggestNewDocumentButton
-          id="suggestButton"
-          href={`/write/${title[0]}`}
-        >
-          '{title[0]}' 문서 새로 작성하기
+        <SuggestNewDocumentButton id="suggestButton" href={`/write/${name}`}>
+          '{name}' 문서 새로 작성하기
         </SuggestNewDocumentButton>
       </SuggestNewDocumentBox>
-      {title.map((name, i) => (
-        <SummaryItems href={`/contents/${name}`} key={i}>
-          <Title text={`${i + 1}. ${name}`} />
-          <HorizonTag
-            color={"lightgrey"}
-            marginTop={"-30px"}
-            marginBottom={"20px"}
-          />
-          <Explanation>
-            <LinesEllipsis
-              text={explanation[i]}
-              maxLine="3"
-              ellipsis="..."
-              trimRight
-              basedOn="letters"
-            />
-          </Explanation>
-        </SummaryItems>
-      ))}
+      {title[0] === ""
+        ? ""
+        : title.map((name, i) => (
+            <SummaryItems href={`/contents/${name}`} key={i}>
+              <Title text={`${i + 1}. ${name}`} />
+              <HorizonTag
+                color={"lightgrey"}
+                marginTop={"-30px"}
+                marginBottom={"20px"}
+              />
+              <Explanation>
+                <LinesEllipsis
+                  text={explanation[i]}
+                  maxLine="3"
+                  ellipsis="..."
+                  trimRight
+                  basedOn="letters"
+                />
+              </Explanation>
+            </SummaryItems>
+          ))}
     </SummaryBox>
   );
 };

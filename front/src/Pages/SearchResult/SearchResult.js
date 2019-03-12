@@ -15,6 +15,7 @@ const SearchResult = ({
       contentsName: name
     }
   });
+  data["name"] = name;
   if (loading) return <Loading>loading</Loading>;
   else return <BackgroundView CenterSection={CenterSection} data={data} />;
 };
