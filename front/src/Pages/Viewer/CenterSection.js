@@ -50,7 +50,7 @@ const FIRST_PAGE = 1;
 const HistoryContainer = ({ makingTime, title, ver, writer }) => {
   const LAST_PAGE = Math.ceil(makingTime.length / 5);
   const [nowPage, setNowPage] = useState(1);
-  console.log(writer);
+
   return (
     <HistoryBox>
       <HistoryTitle>수정 내역</HistoryTitle>
@@ -110,6 +110,9 @@ const ContentName = styled.p`
 
 const CurrentEditText = styled.p`
   color: rgb(109, 109, 109);
+  @media (max-width: 500px) {
+    font-size: 10px;
+  }
 `;
 
 const Content = styled.div`

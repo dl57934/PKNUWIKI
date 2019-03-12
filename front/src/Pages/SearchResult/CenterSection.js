@@ -90,8 +90,7 @@ const SuggestNewDocumentBox = styled.div`
   }
   @media (max-width: 650px) {
     #suggestButton {
-      width: 100px;
-      font-size: 10%;
+      font-size: 10px;
     }
   }
 `;
@@ -104,8 +103,9 @@ const SuggestNewDocumentText = styled.p`
 `;
 
 const SuggestNewDocumentButton = styled.a`
-  width: 20%;
-  height: 30px;
+  width: auto;
+  height: auto;
+  padding: 1px;
   display: flex;
   justify-content: center;
   align-items: center;

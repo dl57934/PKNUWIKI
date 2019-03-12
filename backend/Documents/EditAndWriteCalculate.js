@@ -120,7 +120,6 @@ export const getCurrentlyChangeDocument = async () => {
 
 const existAtCurrentlyChange = async (currentlyListModel, title) => {
   const findResult = await currentlyListModel.find({ title });
-  console.log(findResult);
   if (findResult.length > 0) return true;
   else return false;
 };
