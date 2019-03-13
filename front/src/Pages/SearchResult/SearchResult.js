@@ -10,11 +10,13 @@ const SearchResult = ({
     params: { name }
   }
 }) => {
+  console.log(name);
   const { data, loading } = useQuery(SEARCH_RESULT, {
     variables: {
       contentsName: name
     }
   });
+  console.log(data);
   data["name"] = name;
   if (loading) return <Loading>loading</Loading>;
   else return <BackgroundView CenterSection={CenterSection} data={data} />;
